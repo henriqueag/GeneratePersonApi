@@ -1,7 +1,7 @@
 using System;
-using GeneratePersonApi.Entities;
+using DocumentGenerator.Entities;
 
-namespace GeneratePersonApi.Services
+namespace DocumentGenerator.Services
 {
     public static class GeradorDeDados
     {
@@ -19,8 +19,8 @@ namespace GeneratePersonApi.Services
 
         public static string GeraCpfValidado(bool gerarComPonto = false)
         {
-            Random random = new Random();
-            string cpf = string.Empty;
+            Random random = new ();
+            string cpf;
             while (true)
             {
                 while (true)
@@ -44,8 +44,8 @@ namespace GeneratePersonApi.Services
 
         public static string GeraRgValido(bool gerarComPonto = false)
         {
-            Random random = new Random();
-            string rg = string.Empty;
+            Random random = new();
+            string rg;
             while (true)
             {
                 while (true)
@@ -114,7 +114,7 @@ namespace GeneratePersonApi.Services
                 throw new ArgumentNullException(nameof(endereco));
             }
             int[] inicioNumero = new int[] { 999, 998, 988, 989, 987, 997 };
-            Random random = new Random();
+            Random random = new ();
             string telefone = $"{endereco.DDD} {inicioNumero[random.Next(0, inicioNumero.Length)]}{random.Next(100000, 999999)}";
             telefone = telefone.Insert(0, "(").Insert(3, ")").Insert(10, "-");
             return telefone;

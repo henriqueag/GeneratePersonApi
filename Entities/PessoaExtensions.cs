@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GeneratePersonApi.Entities
+namespace DocumentGenerator.Entities
 {
     public static class PessoaExtensions
     {
         public static PessoaApi ToApi(this Pessoa pessoa)
         {
-            EnderecoApi enderecoApi = new EnderecoApi(pessoa.Endereco);
+            EnderecoApi enderecoApi = new (pessoa.Endereco);
             return new PessoaApi(pessoa.Nome, pessoa.Cpf, pessoa.Rg, pessoa.DataNasc, pessoa.Idade, pessoa.Telefone, pessoa.Email, enderecoApi);
         }
 

@@ -1,8 +1,8 @@
-using GeneratePersonApi.Services.Interfaces;
+using DocumentGenerator.Interfaces;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 
-namespace GeneratePersonApi.Services
+namespace DocumentGenerator.Services
 {
     public class ServiceDatabase : IServiceDatabase
     {
@@ -21,7 +21,7 @@ namespace GeneratePersonApi.Services
             {
                 using SqlConnection conn = new(_configuration.GetConnectionString("DefaultConnection"));
                 conn.Open();
-                var sql = @"BACKUP DATABASE [generatePerson] TO  DISK = N'C:\Projetos\GeneratePersonApi\Dados\Backup\generatePerson.bak' WITH NOFORMAT, INIT,  NAME = N'generatePerson-Completo Banco de Dados Backup', SKIP, NOREWIND, NOUNLOAD,  STATS = 10";
+                var sql = @"BACKUP DATABASE [generatePerson] TO  DISK = N'C:\Projetos\DocumentGenerator\Dados\Backup\generatePerson.bak' WITH NOFORMAT, INIT,  NAME = N'generatePerson-Completo Banco de Dados Backup', SKIP, NOREWIND, NOUNLOAD,  STATS = 10";
                 using SqlCommand cmd = new(sql, conn);
                 var result = cmd.ExecuteNonQuery();
                 if (result == -1)

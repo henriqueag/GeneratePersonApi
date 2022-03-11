@@ -1,4 +1,4 @@
-namespace GeneratePersonApi.Entities.Enum
+namespace DocumentGenerator.Entities.Enum
 {
     public enum EstadosBR
     {

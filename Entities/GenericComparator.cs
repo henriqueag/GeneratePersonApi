@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace GeneratePersonApi.Entities
+namespace DocumentGenerator.Entities
 {
     internal class GenericComparator<TSource> : IEqualityComparer<TSource>
     {
@@ -19,7 +19,7 @@ namespace GeneratePersonApi.Entities
         public static GenericComparator<TSource> Criar(
             Func<TSource, TSource, bool> metodoEquals,
             Func<TSource, int> metodoGetHashCode)
-                => new GenericComparator<TSource>(
+                => new(
                         metodoEquals,
                         metodoGetHashCode
                     );

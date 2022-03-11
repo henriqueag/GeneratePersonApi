@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GeneratePersonApi.Entities
+namespace DocumentGenerator.Entities
 {
     public static class DistinctExtension
     {

@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace GeneratePersonApi.Entities
+namespace DocumentGenerator.Entities
 {
     public class Endereco
     {

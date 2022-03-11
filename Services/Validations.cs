@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace GeneratePersonApi.Services
+namespace DocumentGenerator.Services
 {
     public static class Validations
     {

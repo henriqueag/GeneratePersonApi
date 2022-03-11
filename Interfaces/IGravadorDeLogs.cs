@@ -1,4 +1,4 @@
-﻿namespace GeneratePersonApi.Services.Interfaces
+﻿namespace DocumentGenerator.Interfaces
 {
     public interface IGravadorDeLogs
     {

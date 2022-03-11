@@ -1,10 +1,10 @@
-﻿using GeneratePersonApi.Services.Interfaces;
+﻿using DocumentGenerator.Interfaces;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
 using System.Text;
 
-namespace GeneratePersonApi.Services
+namespace DocumentGenerator.Services
 {
     public class GravadorDeLogs : IGravadorDeLogs
     {

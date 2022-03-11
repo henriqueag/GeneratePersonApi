@@ -5,12 +5,12 @@ using System.Linq;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
-using GeneratePersonApi.Entities;
-using GeneratePersonApi.DataContext;
-using GeneratePersonApi.Services.Interfaces;
-using GeneratePersonApi.Entities.Enum;
+using DocumentGenerator.Entities;
+using DocumentGenerator.DataContext;
+using DocumentGenerator.Interfaces;
+using DocumentGenerator.Entities.Enum;
 
-namespace GeneratePersonApi.Services
+namespace DocumentGenerator.Services
 {
     public class EnderecoService : IEnderecoService
     {

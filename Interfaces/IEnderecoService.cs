@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using GeneratePersonApi.Entities;
-using GeneratePersonApi.Entities.Enum;
+using DocumentGenerator.Entities;
+using DocumentGenerator.Entities.Enum;
 
-namespace GeneratePersonApi.Services.Interfaces
+namespace DocumentGenerator.Interfaces
 {
     public interface IEnderecoService
     {

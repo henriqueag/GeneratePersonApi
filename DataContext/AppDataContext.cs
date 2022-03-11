@@ -1,7 +1,7 @@
-using GeneratePersonApi.Entities;
+using DocumentGenerator.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace GeneratePersonApi.DataContext
+namespace DocumentGenerator.DataContext
 {
     public class AppDataContext : DbContext
     {

@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using GeneratePersonApi.DataContext;
-using GeneratePersonApi.Entities;
-using GeneratePersonApi.Entities.Enum;
-using GeneratePersonApi.Services.Interfaces;
+using DocumentGenerator.DataContext;
+using DocumentGenerator.Entities;
+using DocumentGenerator.Entities.Enum;
+using DocumentGenerator.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace GeneratePersonApi.Services
+namespace DocumentGenerator.Services
 {
     public class PessoaService : IPessoaService
     {

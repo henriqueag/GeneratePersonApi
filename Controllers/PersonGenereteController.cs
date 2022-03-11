@@ -1,23 +1,22 @@
 ﻿using System.Threading.Tasks;
-using GeneratePersonApi.Entities;
+using DocumentGenerator.Entities;
 using Microsoft.AspNetCore.Mvc;
-using GeneratePersonApi.Services.Interfaces;
-using GeneratePersonApi.Entities.Enum;
+using DocumentGenerator.Interfaces;
+using DocumentGenerator.Entities.Enum;
 
-namespace GeneratePersonApi.Controllers
+namespace DocumentGenerator.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
     public class PersonGenereteController : ControllerBase
     {
-        private IPessoaService _service;
-        private IEnderecoService _enderecoService;
+        private readonly IPessoaService _service;
+        private readonly IEnderecoService _enderecoService;
 
         public PersonGenereteController(IPessoaService service, IEnderecoService enderecoService)
         {
             _service = service;
             _enderecoService = enderecoService;
-            new EstadosBR();
         }
 
         [HttpGet("OnePerson")]
