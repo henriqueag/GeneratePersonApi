@@ -15,9 +15,9 @@ namespace DocumentGenerator.Services
     public class EnderecoService : IEnderecoService
     {
         private readonly AppDataContext _context;
-        private readonly IGravadorDeLogs _gravadorDeLogs;
+        private readonly ILogRegisterService _gravadorDeLogs;
 
-        public EnderecoService(AppDataContext context, IGravadorDeLogs gravadorDeLogs)
+        public EnderecoService(AppDataContext context, ILogRegisterService gravadorDeLogs)
         {
             _context = context;
             _gravadorDeLogs = gravadorDeLogs;

@@ -37,14 +37,14 @@ namespace DocumentGenerator
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
-            services.AddScoped<IServiceDatabase, ServiceDatabase>();
+            services.AddScoped<IDatabaseService, DatabaseService>();
             services.AddScoped<IEnderecoService, EnderecoService>();
-            services.AddScoped<IPessoaService, PessoaService>();
-            services.AddScoped<IGravadorDeLogs, GravadorDeLogs>();
+            services.AddScoped<IPersonService, PersonService>();
+            services.AddScoped<ILogRegisterService, LogRegisterService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceDatabase database)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDatabaseService database)
         {
             if (env.IsDevelopment())
             {
