@@ -37,5 +37,4 @@ Abaixo os endpoints:
 * /api​/Validator​/rg_validator
 
 ## Observação
-<hr>
 Alguns endpoints usam query string, então para uma implementação em um site ou projeto de teste terá que entrar no código dos respectivos controladores para verificar os nomes dos parâmentros
