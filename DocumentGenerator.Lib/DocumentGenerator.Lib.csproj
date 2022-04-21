@@ -5,20 +5,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<Compile Remove="bin\**" />
 		<Compile Remove="Database\**" />
+		<EmbeddedResource Remove="bin\**" />
 		<EmbeddedResource Remove="Database\**" />
+		<None Remove="bin\**" />
 		<None Remove="Database\**" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Content Include="bin\Debug\net5.0\DocumentGenerator.Lib.deps.json" />
-	  <Content Include="bin\Debug\net5.0\DocumentGenerator.Lib.runtimeconfig.dev.json" />
-	  <Content Include="bin\Debug\net5.0\DocumentGenerator.Lib.runtimeconfig.json" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Include="bin\Debug\net5.0\DocumentGenerator.Lib.dll" />
-	  <None Include="bin\Debug\net5.0\DocumentGenerator.Lib.pdb" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -45,6 +37,10 @@
 	    <Generator>ResXFileCodeGenerator</Generator>
 	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Database\Backup\" />
 	</ItemGroup>
 
 </Project>

@@ -1,6 +1,5 @@
 using DocumentGenerator.Lib.Interfaces;
 using Microsoft.Data.SqlClient;
-using System.Configuration;
 
 namespace DocumentGenerator.Lib.Services
 {
@@ -23,9 +22,8 @@ namespace DocumentGenerator.Lib.Services
                 using SqlCommand cmd = new(sql, conn);
                 var result = cmd.ExecuteNonQuery();
                 if (result == -1)
-                {
                     _gravadorDeLogs.GravaLog("Backup do banco de dados realizado com sucesso", "database-bkp.txt");
-                }
+                
             }
             catch (System.Exception ex)
             {

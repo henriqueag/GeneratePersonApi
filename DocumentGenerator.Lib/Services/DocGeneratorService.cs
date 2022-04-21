@@ -67,7 +67,7 @@ namespace DocumentGenerator.Lib.Services
                 }
                 return cpf;
             }
-            // Condi��es para definir o estado do cpf a ser gerado.
+            // Condições para definir o estado do cpf a ser gerado.
             if (estado == EstadosBR.RS)
             {
                 cpf_retorno = FunctionTemp(0);
