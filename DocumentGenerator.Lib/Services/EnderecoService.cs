@@ -10,7 +10,7 @@ using DocumentGenerator.DataContext;
 using DocumentGenerator.Interfaces;
 using DocumentGenerator.Entities.Enum;
 
-namespace DocumentGenerator.Services
+namespace DocumentGenerator.Lib.Services
 {
     public class EnderecoService : IEnderecoService
     {

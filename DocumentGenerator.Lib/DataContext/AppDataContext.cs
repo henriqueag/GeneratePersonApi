@@ -1,7 +1,7 @@
 using DocumentGenerator.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace DocumentGenerator.DataContext
+namespace DocumentGenerator.Lib.DataContext
 {
     public class AppDataContext : DbContext
     {

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using DocumentGenerator.Entities;
 using DocumentGenerator.Entities.Enum;
 
-namespace DocumentGenerator.Interfaces
+namespace DocumentGenerator.Lib.Interfaces
 {
     public interface IEnderecoService
     {

@@ -2,7 +2,7 @@ using DocumentGenerator.Interfaces;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 
-namespace DocumentGenerator.Services
+namespace DocumentGenerator.Lib.Services
 {
     public class DatabaseService : IDatabaseService
     {

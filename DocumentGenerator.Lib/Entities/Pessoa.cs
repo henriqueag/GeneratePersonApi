@@ -1,7 +1,7 @@
 using System;
 using Newtonsoft.Json;
 
-namespace DocumentGenerator.Entities
+namespace DocumentGenerator.Lib.Entities
 {
     public class Pessoa
     {

@@ -7,7 +7,7 @@ using DocumentGenerator.Entities.Enum;
 using DocumentGenerator.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace DocumentGenerator.Services
+namespace DocumentGenerator.Lib.Services
 {
     public class PersonService : IPersonService
     {

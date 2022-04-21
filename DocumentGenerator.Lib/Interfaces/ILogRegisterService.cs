@@ -1,4 +1,4 @@
-﻿namespace DocumentGenerator.Interfaces
+﻿namespace DocumentGenerator.Lib.Interfaces
 {
     public interface ILogRegisterService
     {

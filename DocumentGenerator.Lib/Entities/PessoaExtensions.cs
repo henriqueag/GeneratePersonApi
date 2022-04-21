@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace DocumentGenerator.Entities
+namespace DocumentGenerator.Lib.Entities
 {
     public static class PessoaExtensions
     {

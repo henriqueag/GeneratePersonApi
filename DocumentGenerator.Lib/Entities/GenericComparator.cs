@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace DocumentGenerator.Entities
+namespace DocumentGenerator.Lib.Entities
 {
     internal class GenericComparator<TSource> : IEqualityComparer<TSource>
     {

@@ -2,7 +2,7 @@ using System;
 using DocumentGenerator.Entities;
 using DocumentGenerator.Entities.Enum;
 
-namespace DocumentGenerator.Services
+namespace DocumentGenerator.Lib.Services
 {
     public static class DocGeneratorService
     {

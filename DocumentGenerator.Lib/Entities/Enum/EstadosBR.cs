@@ -1,4 +1,4 @@
-namespace DocumentGenerator.Entities.Enum
+namespace DocumentGenerator.Lib.Entities.Enum
 {
     public enum EstadosBR
     {

@@ -4,7 +4,7 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace DocumentGenerator.Services
+namespace DocumentGenerator.Lib.Services
 {
     public class LogRegisterService : ILogRegisterService
     {
