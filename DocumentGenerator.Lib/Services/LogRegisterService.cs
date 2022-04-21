@@ -1,5 +1,5 @@
 ﻿using DocumentGenerator.Lib.Interfaces;
-using Microsoft.Extensions.Configuration;
+using System.Configuration;
 using System;
 using System.IO;
 using System.Text;
@@ -8,18 +8,17 @@ namespace DocumentGenerator.Lib.Services
 {
     public class LogRegisterService : ILogRegisterService
     {
-        private readonly IConfiguration _configuration;
-
-        public LogRegisterService(IConfiguration configuration)
+        public LogRegisterService()
         {
-            _configuration = configuration;
         }
 
         public void GravaLog(string mensagem, string nomeArquivo)
         {
             try
             {
-                var path = _configuration.GetSection("Logs").GetSection("DefaultPath").Value;
+                var path = "";//ConfigurationManager.AppSettings["PathLog"].ToString();
+                //var conn = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
+                var config = ConfigurationManager.AppSettings;
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);
