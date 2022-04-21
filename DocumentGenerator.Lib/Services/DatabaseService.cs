@@ -1,4 +1,4 @@
-using DocumentGenerator.Interfaces;
+using DocumentGenerator.Lib.Interfaces;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 

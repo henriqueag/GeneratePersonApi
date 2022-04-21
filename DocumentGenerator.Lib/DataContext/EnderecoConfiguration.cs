@@ -1,4 +1,4 @@
-using DocumentGenerator.Entities;
+using DocumentGenerator.Lib.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

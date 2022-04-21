@@ -1,6 +1,6 @@
 using System;
-using DocumentGenerator.Entities;
-using DocumentGenerator.Entities.Enum;
+using DocumentGenerator.Lib.Entities;
+using DocumentGenerator.Lib.Entities.Enum;
 
 namespace DocumentGenerator.Lib.Services
 {

@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DocumentGenerator.DataContext;
-using DocumentGenerator.Entities;
-using DocumentGenerator.Entities.Enum;
-using DocumentGenerator.Interfaces;
+using DocumentGenerator.Lib.DataContext;
+using DocumentGenerator.Lib.Entities;
+using DocumentGenerator.Lib.Entities.Enum;
+using DocumentGenerator.Lib.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace DocumentGenerator.Lib.Services

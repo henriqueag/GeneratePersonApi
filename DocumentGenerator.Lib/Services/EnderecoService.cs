@@ -5,10 +5,10 @@ using System.Linq;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
-using DocumentGenerator.Entities;
-using DocumentGenerator.DataContext;
-using DocumentGenerator.Interfaces;
-using DocumentGenerator.Entities.Enum;
+using DocumentGenerator.Lib.Entities;
+using DocumentGenerator.Lib.DataContext;
+using DocumentGenerator.Lib.Interfaces;
+using DocumentGenerator.Lib.Entities.Enum;
 
 namespace DocumentGenerator.Lib.Services
 {

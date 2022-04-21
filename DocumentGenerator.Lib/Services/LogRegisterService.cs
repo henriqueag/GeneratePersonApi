@@ -1,4 +1,4 @@
-﻿using DocumentGenerator.Interfaces;
+﻿using DocumentGenerator.Lib.Interfaces;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;

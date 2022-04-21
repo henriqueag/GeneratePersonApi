@@ -1,4 +1,4 @@
-using DocumentGenerator.Entities;
+using DocumentGenerator.Lib.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace DocumentGenerator.Lib.DataContext

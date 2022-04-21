@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DocumentGenerator.Entities;
-using DocumentGenerator.Entities.Enum;
+using DocumentGenerator.Lib.Entities;
+using DocumentGenerator.Lib.Entities.Enum;
 
 namespace DocumentGenerator.Lib.Interfaces
 {
