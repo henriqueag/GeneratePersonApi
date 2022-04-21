@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using DocumentGenerator.Services;
+using DocumentGenerator.Lib.Services;
 
 namespace DocumentGenerator.Controllers
 {

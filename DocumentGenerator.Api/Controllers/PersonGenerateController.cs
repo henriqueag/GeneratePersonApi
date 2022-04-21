@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using DocumentGenerator.Entities;
 using Microsoft.AspNetCore.Mvc;
-using DocumentGenerator.Interfaces;
-using DocumentGenerator.Entities.Enum;
+using DocumentGenerator.Lib.Entities;
+using DocumentGenerator.Lib.Interfaces;
+using DocumentGenerator.Lib.Entities.Enum;
 
 namespace DocumentGenerator.Controllers
 {

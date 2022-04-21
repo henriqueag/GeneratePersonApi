@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using DocumentGenerator.Interfaces;
-using DocumentGenerator.Entities.Enum;
-using DocumentGenerator.Services;
+using DocumentGenerator.Lib.Interfaces;
+using DocumentGenerator.Lib.Entities.Enum;
+using DocumentGenerator.Lib.Services;
 using System.Threading.Tasks;
 using System.Text;
 using System;
