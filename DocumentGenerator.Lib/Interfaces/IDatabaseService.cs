@@ -2,6 +2,6 @@
 {
     public interface IDatabaseService
     {
-        void BackupDataBase();
+        void BackupDataBase(string connectionString);
     }
 }

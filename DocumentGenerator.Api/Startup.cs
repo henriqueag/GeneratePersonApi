@@ -52,7 +52,7 @@ namespace DocumentGenerator
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DocumentGenerator v1"));
             }
-            database.BackupDataBase();
+            database.BackupDataBase(Configuration.GetConnectionString("DefaultConnection"));
 
             app.UseRouting();
 

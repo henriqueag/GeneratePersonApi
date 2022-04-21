@@ -13,11 +13,11 @@ namespace DocumentGenerator.Lib.Services
             _gravadorDeLogs = gravadorDeLogs;
         }
 
-        public void BackupDataBase()
+        public void BackupDataBase(string connectionString)
         {
             try
             {
-                using SqlConnection conn = new(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+                using SqlConnection conn = new(connectionString);
                 conn.Open();
                 var sql = @"BACKUP DATABASE [generatePerson] TO  DISK = N'C:\Projetos\DocumentGenerator\DocumentGenerator.Lib\Database\Backup\generatePerson.bak' WITH NOFORMAT, INIT,  NAME = N'generatePerson-Completo Banco de Dados Backup', SKIP, NOREWIND, NOUNLOAD,  STATS = 10";
                 using SqlCommand cmd = new(sql, conn);

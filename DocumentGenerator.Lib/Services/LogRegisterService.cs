@@ -16,14 +16,11 @@ namespace DocumentGenerator.Lib.Services
         {
             try
             {
-                var path = "";//ConfigurationManager.AppSettings["PathLog"].ToString();
-                //var conn = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
-                var config = ConfigurationManager.AppSettings;
-                if (!Directory.Exists(path))
+                if (!Directory.Exists(Properties.Resources.PathLog))
                 {
-                    Directory.CreateDirectory(path);
+                    Directory.CreateDirectory(Properties.Resources.PathLog);
                 }
-                using StreamWriter writer = new($"{path}{nomeArquivo}", true, Encoding.UTF8);
+                using StreamWriter writer = new($"{Properties.Resources.PathLog}{nomeArquivo}", true, Encoding.UTF8);
                 writer.WriteLine($"\n{DateTime.Now:d} -- {mensagem}\n");
             }
             catch (IOException)

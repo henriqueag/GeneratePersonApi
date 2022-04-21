@@ -1,8 +1,8 @@
-using System;
 using Xunit;
+using System.IO;
+using System.Reflection;
 using DocumentGenerator.Lib;
-using DocumentGenerator.Lib.Interfaces;
-using DocumentGenerator.Lib.Services;
+using DocumentGenerator.Lib.DataContext;
 
 namespace DocumentGenerator.Test
 {
@@ -11,11 +11,7 @@ namespace DocumentGenerator.Test
         [Fact]
         public void ReadConnectionStringAndPathLog()
         {
-            ILogRegisterService logRegisterService = new LogRegisterService();
-            IDatabaseService databaseService = new DatabaseService(logRegisterService);
-
-            logRegisterService.GravaLog("Teste gravação", "arquivoTeste");
-            databaseService.BackupDataBase();
+            System.Console.WriteLine();
         }
     }
 }
