@@ -1,0 +1,31 @@
+<div class="d-flex">
+
+  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px; height: 100vh;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+      <i class="fa-brands fa-angular"></i>
+      <span class="fs-4">Doc Generator</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="#" class="nav-link active" aria-current="page"><i class="fa-solid fa-circle"></i>Home</a>
+      </li>
+      <li>
+        <a [routerLink]="['/generate-person']" class="nav-link text-white"><i class="fa-solid fa-circle"></i>Gerador de
+          Pessoa</a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-white"><i class="fa-solid fa-circle"></i>Gerador de CPF</a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-white"><i class="fa-solid fa-circle"></i>Gerador de CNPJ</a>
+      </li>
+    </ul>
+    <hr>
+  </div>
+
+  <div class="page-content px-4 py-3">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

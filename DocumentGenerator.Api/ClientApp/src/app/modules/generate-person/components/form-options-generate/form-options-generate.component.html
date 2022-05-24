@@ -1,0 +1,41 @@
+<h5>Parâmetros opcionais</h5>
+<hr>
+<form>
+    <div class="col-md-auto mb-2">
+        <label for="idade" class="form-label">Qual a idade da pessoa?</label>
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Selecione</option>
+            <option value="1">18</option>
+        </select>
+    </div>
+    <div class="col-md-auto mb-2">
+        <label class="form-label">Qual estado?</label>
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Selecione</option>
+            <option value="1">MG</option>
+        </select>
+    </div>
+    <div class="col-md-auto mb-2">
+        <label class="form-label">Qual cidade?</label>
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Selecione</option>
+            <option value="1">Pará de Minas</option>
+        </select>
+    </div>
+    <div class="col-md-auto mb-2">
+        <label class="form-label">Gerar com pontuação?</label>
+        <div class="d-flex">
+            <input class="form-check-input me-1" type="radio" name="gerarComPonto" id="comPonto" checked>
+            <label class="form-check-label" for="comPonto">Sim</label>
+            <input class="form-check-input ms-3 me-1" type="radio" name="gerarComPonto" id="semPonto">
+            <label class="form-check-label" for="semPonto">Não</label>
+        </div>
+    </div>
+    <div class="col-md-auto">
+        <label class="form-label">Gerar quantas pessoas?</label>
+        <input type="number" class="form-control" id="idade" min="1" max="10">
+    </div>
+    <div class="col-md-auto">
+        <input type="submit" value="Enviar" class=" btn btn-primary my-3 w-100">
+    </div>
+</form>

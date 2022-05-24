@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using DocumentGenerator.Lib.Services;
+using DocumentGenerator.Api.Services;
 
-namespace DocumentGenerator.Controllers
+namespace DocumentGenerator.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

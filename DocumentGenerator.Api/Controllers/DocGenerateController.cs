@@ -1,12 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using DocumentGenerator.Lib.Interfaces;
-using DocumentGenerator.Lib.Entities.Enum;
-using DocumentGenerator.Lib.Services;
+using DocumentGenerator.Api.Interfaces;
+using DocumentGenerator.Api.Entities.Enum;
+using DocumentGenerator.Api.Services;
 using System.Threading.Tasks;
-using System.Text;
-using System;
 
-namespace DocumentGenerator.Controllers
+namespace DocumentGenerator.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

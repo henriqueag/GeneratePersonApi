@@ -1,11 +1,11 @@
-using DocumentGenerator.Lib.DataContext;
+using DocumentGenerator.Api.DataContext;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using DocumentGenerator.Lib.Services;
-using DocumentGenerator.Lib.Interfaces;
+using DocumentGenerator.Api.Services;
+using DocumentGenerator.Api.Interfaces;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 

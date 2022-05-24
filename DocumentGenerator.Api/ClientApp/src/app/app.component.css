@@ -1,0 +1,17 @@
+.fa-solid.fa-circle {
+  font-size: 10px;
+  margin: 0 10px 0 0;
+  position: relative;
+  bottom: 2px;
+}
+
+.fa-brands.fa-angular {
+  font-size: 34px;
+  margin: 0 12px 0 5px;
+}
+
+.page-content {
+  width: 100%;
+  height: 100vh;
+  background-color: #d9e5d6;
+}
