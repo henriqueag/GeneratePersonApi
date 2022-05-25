@@ -10,6 +10,7 @@
     "noPropertyAccessFromIndexSignature": true,
     "strictPropertyInitialization": false,
     "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,

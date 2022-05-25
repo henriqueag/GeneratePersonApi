@@ -1,4 +1,4 @@
-<div class="d-flex">
+<div class="d-flex overflow-hidden">
 
   <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px; height: 100vh;">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
@@ -8,11 +8,12 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="#" class="nav-link active" aria-current="page"><i class="fa-solid fa-circle"></i>Home</a>
+        <a [routerLink]="['/home']" [routerLinkActive]="['active']" class="nav-link text-white" aria-current="page">
+          <i class="fa-solid fa-circle"></i>Home</a>
       </li>
       <li>
-        <a [routerLink]="['/generate-person']" class="nav-link text-white"><i class="fa-solid fa-circle"></i>Gerador de
-          Pessoa</a>
+        <a [routerLink]="['/generate-person']" [routerLinkActive]="['active']" class="nav-link text-white">
+          <i class="fa-solid fa-circle"></i>Gerador de Pessoa</a>
       </li>
       <li>
         <a href="#" class="nav-link text-white"><i class="fa-solid fa-circle"></i>Gerador de CPF</a>
@@ -24,7 +25,7 @@
     <hr>
   </div>
 
-  <div class="page-content px-4 py-3">
+  <div class="page-content px-4 py-3 overflow-auto">
     <router-outlet></router-outlet>
   </div>
 

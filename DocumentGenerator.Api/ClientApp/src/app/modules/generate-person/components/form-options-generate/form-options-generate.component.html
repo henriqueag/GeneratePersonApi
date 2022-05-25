@@ -3,23 +3,24 @@
 <form>
     <div class="col-md-auto mb-2">
         <label for="idade" class="form-label">Qual a idade da pessoa?</label>
-        <select class="form-select" aria-label="Default select example">
+        <select class="form-select" id="selectIdade">
             <option selected>Selecione</option>
-            <option value="1">18</option>
+            <option *ngFor="let idade of idades" [value]="idade">{{ idade }}</option>
         </select>
     </div>
     <div class="col-md-auto mb-2">
         <label class="form-label">Qual estado?</label>
-        <select class="form-select" aria-label="Default select example">
-            <option selected>Selecione</option>
-            <option value="1">MG</option>
+        <select class="form-select" aria-label="Default select example"
+            (change)="getSelectCurrentValue(estadoSelecionado.value)" #estadoSelecionado id="selectEstado">
+            <option selected value="-1">Selecione</option>
+            <option *ngFor="let estado of estados$ | async; index as i" [value]="i">{{ estado }}</option>
         </select>
     </div>
     <div class="col-md-auto mb-2">
         <label class="form-label">Qual cidade?</label>
-        <select class="form-select" aria-label="Default select example">
+        <select class="form-select" aria-label="Default select example" id="selectCidade">
             <option selected>Selecione</option>
-            <option value="1">Pará de Minas</option>
+            <option *ngFor="let cidade of cidades$ | async; index as i" [value]="i">{{ cidade }}</option>
         </select>
     </div>
     <div class="col-md-auto mb-2">
@@ -33,9 +34,9 @@
     </div>
     <div class="col-md-auto">
         <label class="form-label">Gerar quantas pessoas?</label>
-        <input type="number" class="form-control" id="idade" min="1" max="10">
+        <input type="number" class="form-control" id="quantidade" value="1" min="1" max="10" placeholder="Máximo 10">
     </div>
     <div class="col-md-auto">
-        <input type="submit" value="Enviar" class=" btn btn-primary my-3 w-100">
+        <input type="button" value="Enviar" (click)="formSubmit()" class=" btn btn-primary my-3 w-100">
     </div>
 </form>

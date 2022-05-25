@@ -20,7 +20,6 @@ namespace DocumentGenerator
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
@@ -31,7 +30,7 @@ namespace DocumentGenerator
            });
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "DocumentGenerator", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Gerador de documentos", Version = "v1", License = new OpenApiLicense { Name = "Henrique Aguiar"} });
             });
             services.AddDbContext<AppDataContext>(options =>
             {

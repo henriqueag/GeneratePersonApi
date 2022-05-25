@@ -2,9 +2,9 @@
 <hr>
 <div class="row pt-2">
     <div class="col-3">
-        <form-options-generate></form-options-generate>
+        <form-options-generate (response)="getEvent($event)"></form-options-generate>
     </div>
     <div class="col-9">
-        <result-generate-person></result-generate-person>
+        <result-generate-person [response]="resultText"></result-generate-person>
     </div>
 </div>

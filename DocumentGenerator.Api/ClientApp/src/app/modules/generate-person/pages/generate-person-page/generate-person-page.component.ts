@@ -6,9 +6,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GeneratePersonPageComponent implements OnInit {
 
+  resultText: string;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  getEvent(event: any) {
+    this.resultText = JSON.stringify(event, null, 4);
   }
 
 }
