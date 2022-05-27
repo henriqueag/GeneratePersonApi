@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using DocumentGenerator.Api.Entities;
 using DocumentGenerator.Api.DataContext;
 using DocumentGenerator.Api.Interfaces;
-using DocumentGenerator.Api.Entities.Enum;
 
 namespace DocumentGenerator.Api.Services
 {
@@ -23,20 +22,20 @@ namespace DocumentGenerator.Api.Services
             _gravadorDeLogs = gravadorDeLogs;
         }
 
-        public async Task<Endereco> GetEnderecoAsync(EstadosBR? estado = null, string cityName = null)
+        public async Task<Endereco> GetEnderecoAsync(string estadoBR_sigla = null, string cityName = null)
         {
             Random random = new();
             string cep = string.Empty;
             Endereco endereco = null;
             try
             {
-                if (estado is null && cityName is not null)
+                if (estadoBR_sigla is null && cityName is not null)
                 {
-                    throw new ArgumentNullException(nameof(estado), $"Para ser preenchido o parâmetro {nameof(cityName)} o {nameof(estado)} deverá ser selecionado.");
+                    throw new ArgumentNullException(nameof(estadoBR_sigla), $"Para ser preenchido o parâmetro {nameof(cityName)} o {nameof(estadoBR_sigla)} deverá ser selecionado.");
                 }
-                if (estado is not null && cityName is null)
+                if (estadoBR_sigla is not null && cityName is null)
                 {
-                    var query = await _context.Enderecos.Where(x => x.Uf.Equals(estado.ToString())).AsNoTracking().ToListAsync();
+                    var query = await _context.Enderecos.Where(x => x.Uf.Equals(estadoBR_sigla.ToString())).AsNoTracking().ToListAsync();
                     if (query.Count == 0)
                     {
                         return null;
@@ -62,15 +61,15 @@ namespace DocumentGenerator.Api.Services
                         }
                     }
                 }
-                if (estado is not null && cityName is not null)
+                if (estadoBR_sigla is not null && cityName is not null)
                 {
-                    var cidades = await _context.Enderecos.Where(end => end.Uf.Equals(estado.ToString())).AsNoTracking().ToListAsync();
+                    var cidades = await _context.Enderecos.Where(end => end.Uf.Equals(estadoBR_sigla.ToString())).AsNoTracking().ToListAsync();
 
                     cidades.ForEach(x => x.Cidade = Validations.RemoverAcentuacaoMinuscula(x.Cidade));
                     cityName = Validations.RemoverAcentuacaoMinuscula(cityName);
                     var query = (from end in cidades
                                  where end.Cidade.Equals(cityName)
-                                 && end.Uf.Equals(estado.ToString())
+                                 && end.Uf.Equals(estadoBR_sigla.ToString())
                                  select end).ToList();
 
                     if (query.Count == 0)
@@ -98,7 +97,7 @@ namespace DocumentGenerator.Api.Services
                         }
                     }
                 }
-                if (estado is null && cityName is null)
+                if (estadoBR_sigla is null && cityName is null)
                 {
                     var query = await _context.Enderecos.ToListAsync();
                     while (true)
@@ -164,17 +163,18 @@ namespace DocumentGenerator.Api.Services
             }
         }
 
-        public IList<string> GetCidades(EstadosBR? estado)
+        public IList<string> GetCidades(string estadoBR_sigla)
         {
-            var query = (from cidade in _context.Enderecos where cidade.Uf.Equals(estado.ToString()) select cidade.Cidade).Distinct();
+            var query = (from cidade in _context.Enderecos
+                         where cidade.Uf.Equals(estadoBR_sigla) 
+                         select cidade.Cidade).Distinct();
             query = query.OrderBy(x => x);
             return query.ToList();
         }
 
-        public IList<string> GetEstados()
+        public IList<EstadosBR> GetEstados()
         {
-            var estados = Enum.GetNames<EstadosBR>();
-            return estados.ToList();
+            return EstadosBR.GetEstadosBR();
         }
 
     }

@@ -2,12 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using DocumentGenerator.Api.Entities;
 using DocumentGenerator.Api.Interfaces;
-using DocumentGenerator.Api.Entities.Enum;
 
 namespace DocumentGenerator.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class PersonGenerateController : ControllerBase
     {
         private readonly IPersonService _service;
@@ -18,11 +17,11 @@ namespace DocumentGenerator.Api.Controllers
         }
 
         [HttpGet("onePerson")]
-        public async Task<IActionResult> GetPessoa([FromQuery] int? idade = null, [FromQuery] EstadosBR? estado = null, [FromQuery] string cidade = null, [FromQuery] bool gerarComPonto = true)
+        public async Task<IActionResult> GetPessoa([FromQuery] int? idade = null, [FromQuery] string estadoBR_sigla = null, [FromQuery] string cidade = null, [FromQuery] bool gerarComPonto = true)
         {
             try
             {
-                var model = await _service.GerarPessoaAsync(idade, estado, cidade, gerarComPonto);
+                var model = await _service.GerarPessoaAsync(idade, estadoBR_sigla, cidade, gerarComPonto);
                 if (model is null)
                 {
                     return NotFound();
@@ -36,11 +35,11 @@ namespace DocumentGenerator.Api.Controllers
         }
 
         [HttpGet("listPerson")]
-        public async Task<IActionResult> GetListPessoas([FromQuery] int qtdPessoas, [FromQuery] int? idade = null, [FromQuery] EstadosBR? estado = null, [FromQuery] string cidade = null, [FromQuery] bool gerarComPonto = true)
+        public async Task<IActionResult> GetListPessoas([FromQuery] int qtdPessoas, [FromQuery] int? idade = null, [FromQuery] string estadoBR_sigla = null, [FromQuery] string cidade = null, [FromQuery] bool gerarComPonto = true)
         {
             try
             {
-                var model = await _service.GerarListPessoaAsync(qtdPessoas, idade, estado, cidade, gerarComPonto);
+                var model = await _service.GerarListPessoaAsync(qtdPessoas, idade, estadoBR_sigla, cidade, gerarComPonto);
                 if (model is null)
                 {
                     return NotFound();

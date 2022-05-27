@@ -1,3 +1,4 @@
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { GeneratePersonService } from '../../services/generate-person.service';
 import { HttpClient } from '@angular/common/http';
@@ -8,13 +9,23 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FormOptionsGenerateComponent implements OnInit {
 
+  paramsForm: FormGroup = this.formBuilder.group({
+    idades: [''],
+    estados: ['Selecione'],
+    cidades: [''],
+    gerarComPontuacao: [''],
+    quantidade: ['1']
+  })
   idades: number[] = [];
   estados$: any;
   cidades$: any;
-  estadoId: any;
   @Output() response = new EventEmitter();
 
-  constructor(private service: GeneratePersonService, private http: HttpClient) { }
+  constructor(
+    private service: GeneratePersonService,
+    private http: HttpClient,
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit(): void {
     for (let i = 18; i <= 65; i++) {
@@ -23,10 +34,10 @@ export class FormOptionsGenerateComponent implements OnInit {
     this.estados$ = this.service.getEstados();
   }
 
-  getSelectCurrentValue(value: any) {
-    this.estadoId = parseInt(value);
-    if (this.estadoId != -1)
-      this.cidades$ = this.service.getCidades(this.estadoId);
+  getSelectCurrentValue() {
+    console.log(this.paramsForm.value.estados);
+
+    this.cidades$ = this.service.getCidades(this.paramsForm.value.estados);
   }
 
   formSubmit() {

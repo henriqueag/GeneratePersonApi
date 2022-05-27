@@ -38,6 +38,7 @@ namespace DocumentGenerator
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection1"));
             });
             services.AddScoped<IDatabaseService, DatabaseService>();
+            services.AddScoped<IDocumentService, DocumentService>();
             services.AddScoped<IEnderecoService, EnderecoService>();
             services.AddScoped<IPersonService, PersonService>();
             services.AddScoped<ILogRegisterService, LogRegisterService>();

@@ -1,12 +1,12 @@
 using System;
 using DocumentGenerator.Api.Entities;
-using DocumentGenerator.Api.Entities.Enum;
+using DocumentGenerator.Api.Interfaces;
 
 namespace DocumentGenerator.Api.Services
 {
-    public static class DocGeneratorService
+    public class DocumentService : IDocumentService
     {
-        public static int CalculaIdade(DateTime dataNascimento)
+        public int CalculaIdade(DateTime dataNascimento)
         {
             var span = DateTime.Now.Subtract(dataNascimento);
             var dias = span.TotalDays;
@@ -18,7 +18,7 @@ namespace DocumentGenerator.Api.Services
             return (int)idade;
         }
 
-        public static string GeraCNPJValido()
+        public string GeraCNPJValido()
         {
             Random random = new();
             string cnpj = string.Empty;
@@ -40,13 +40,13 @@ namespace DocumentGenerator.Api.Services
             return cnpj.Insert(2, ".").Insert(6, ".").Insert(10, "/").Insert(15, "-");
         }
 
-        public static string GeraCPFValido(EstadosBR estado, bool gerarComPonto = true)
+        public string GeraCPFValido(string estadoBR_sigla, bool gerarComPonto = true)
         {
             // valor de retorno
             string cpf_retorno = string.Empty;
 
-            // Fun��o que gera o cpf. O parametro � definido nas condi��es abaixo.
-            static string FunctionTemp(int digitoDoEstado)
+            // Funcao que gera o cpf. O parametro e definido nas condicoes abaixo.
+            string FunctionTemp(int digitoDoEstado)
             {
                 Random random = new();
                 string cpf = string.Empty;
@@ -68,55 +68,55 @@ namespace DocumentGenerator.Api.Services
                 return cpf;
             }
             // Condições para definir o estado do cpf a ser gerado.
-            if (estado == EstadosBR.RS)
+            if (estadoBR_sigla.Equals("RS"))
             {
                 cpf_retorno = FunctionTemp(0);
             }
-            if (estado == EstadosBR.DF | estado == EstadosBR.GO | estado == EstadosBR.MT | estado == EstadosBR.MS | estado == EstadosBR.TO)
+            if (estadoBR_sigla.Equals("DF") || estadoBR_sigla.Equals("GO") || estadoBR_sigla.Equals("MT") || estadoBR_sigla.Equals("MS") || estadoBR_sigla.Equals("TO"))
             {
                 cpf_retorno = FunctionTemp(1);
             }
-            if (estado == EstadosBR.AM | estado == EstadosBR.PA | estado == EstadosBR.RR | estado == EstadosBR.AP | estado == EstadosBR.AC | estado == EstadosBR.RO)
+            if (estadoBR_sigla.Equals("AM") || estadoBR_sigla.Equals("PA") || estadoBR_sigla.Equals("RR") || estadoBR_sigla.Equals("AP") || estadoBR_sigla.Equals("AC") || estadoBR_sigla.Equals("RO"))
             {
                 cpf_retorno = FunctionTemp(2);
             }
-            if (estado == EstadosBR.CE | estado == EstadosBR.MA | estado == EstadosBR.PI)
+            if (estadoBR_sigla.Equals("CE") || estadoBR_sigla.Equals("MA") || estadoBR_sigla.Equals("PI"))
             {
                 cpf_retorno = FunctionTemp(3);
             }
-            if (estado == EstadosBR.PB | estado == EstadosBR.PE | estado == EstadosBR.AL | estado == EstadosBR.RN)
+            if (estadoBR_sigla.Equals("PB") || estadoBR_sigla.Equals("PE") || estadoBR_sigla.Equals("AL") || estadoBR_sigla.Equals("RN"))
             {
                 cpf_retorno = FunctionTemp(4);
             }
-            if (estado == EstadosBR.BA | estado == EstadosBR.SE)
+            if (estadoBR_sigla.Equals("BA") || estadoBR_sigla.Equals("SE"))
             {
                 cpf_retorno = FunctionTemp(5);
             }
-            if (estado == EstadosBR.MG)
+            if (estadoBR_sigla.Equals("MG"))
             {
                 cpf_retorno = FunctionTemp(6);
             }
-            if (estado == EstadosBR.RJ | estado == EstadosBR.ES)
+            if (estadoBR_sigla.Equals("RJ") || estadoBR_sigla.Equals("ES)"))
             {
                 cpf_retorno = FunctionTemp(7);
             }
-            if (estado == EstadosBR.SP)
+            if (estadoBR_sigla.Equals("SP"))
             {
                 cpf_retorno = FunctionTemp(8);
             }
-            if (estado == EstadosBR.PR | estado == EstadosBR.SC)
+            if (estadoBR_sigla.Equals("PR") || estadoBR_sigla.Equals("SC"))
             {
                 cpf_retorno = FunctionTemp(9);
             }
 
-            // Defini se vai ter ponto ou n�o
+            // Defini se vai ter ponto ou nao
             if (gerarComPonto)
                 return cpf_retorno.Insert(3, ".").Insert(7, ".").Insert(11, "-");
 
             return cpf_retorno;
         }
 
-        public static string GeraRGValido(bool gerarComPonto = true)
+        public string GeraRGValido(bool gerarComPonto = true)
         {
             Random random = new();
             string rg = string.Empty;
@@ -138,7 +138,7 @@ namespace DocumentGenerator.Api.Services
             return rg;
         }
 
-        public static DateTime GerarDataPorIdade(int idade)
+        public DateTime GerarDataPorIdade(int idade)
         {
             DateTime dataNascimento;
             Random random = new();
@@ -164,7 +164,7 @@ namespace DocumentGenerator.Api.Services
             return dataNascimento;
         }
 
-        public static DateTime GerarIdadeAleatoria()
+        public DateTime GerarIdadeAleatoria()
         {
             Random random = new();
             var inicial = DateTime.Now.Year - 65;
@@ -177,7 +177,7 @@ namespace DocumentGenerator.Api.Services
             return new DateTime(ano, mes, dia);
         }
 
-        public static string GeraTelefoneAleatorio(Endereco endereco)
+        public string GeraTelefoneAleatorio(Endereco endereco)
         {
             if (endereco is null)
             {
@@ -190,7 +190,7 @@ namespace DocumentGenerator.Api.Services
             return telefone;
         }
 
-        public static string GeraEmailAleatorio(string nome)
+        public string GeraEmailAleatorio(string nome)
         {
             string[] sufixoEmail = new string[] { "gmail", "yahoo", "hotmail", "outlook", "mail" };
             Random random = new();

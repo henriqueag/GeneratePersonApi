@@ -1,6 +1,6 @@
 <h5>Parâmetros opcionais</h5>
 <hr>
-<form>
+<form [formGroup]="paramsForm">
     <div class="col-md-auto mb-2">
         <label for="idade" class="form-label">Qual a idade da pessoa?</label>
         <select class="form-select" id="selectIdade">
@@ -10,9 +10,9 @@
     </div>
     <div class="col-md-auto mb-2">
         <label class="form-label">Qual estado?</label>
-        <select class="form-select" aria-label="Default select example"
-            (change)="getSelectCurrentValue(estadoSelecionado.value)" #estadoSelecionado id="selectEstado">
-            <option selected value="-1">Selecione</option>
+        <select class="form-select" aria-label="Default select example" (change)="getSelectCurrentValue()"
+            formControlName="estados" id="selectEstado">
+            <option>Selecione</option>
             <option *ngFor="let estado of estados$ | async; index as i" [value]="i">{{ estado }}</option>
         </select>
     </div>

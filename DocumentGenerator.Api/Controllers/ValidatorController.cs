@@ -4,7 +4,7 @@ using DocumentGenerator.Api.Services;
 namespace DocumentGenerator.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class ValidatorController : ControllerBase
     {
         [HttpGet("cpf_validator")]
