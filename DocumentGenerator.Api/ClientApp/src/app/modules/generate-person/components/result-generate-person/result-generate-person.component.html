@@ -1,3 +1,57 @@
 <h5>Documentos gerados</h5>
 <hr>
-<textarea class="form-control w-100 h-100">{{ response }}</textarea>
+<!-- <textarea class="form-control w-100 h-100">{{ response | json }}</textarea> -->
+<div class="row">
+    <div class="col-12">
+        <label class="form-label" for="nome">Nome</label>
+        <input class="form-control" type="text" [value]="response.nome">
+    </div>
+    <div class="col-3 mt-2">
+        <label class="form-label" for="cpf">CPF</label>
+        <input class="form-control" type="text" [value]="response.cpf">
+    </div>
+    <div class="col-3 mt-2">
+        <label class="form-label" for="rg">RG</label>
+        <input class="form-control" type="text" [value]="response.rg">
+    </div>
+    <div class="col-3 mt-2">
+        <label class="form-label" for="nascimento">Data nascimento</label>
+        <input class="form-control" type="text" [value]="response.dataNasc | date">
+    </div>
+    <div class="col-3 mt-2">
+        <label class="form-label" for="idade">Idade</label>
+        <input class="form-control" type="text" [value]="response.idade">
+    </div>
+    <div class="col-3 mt-2">
+        <label class="form-label" for="telefone">Telefone</label>
+        <input class="form-control" type="text" [value]="response.telefone">
+    </div>
+    <div class="col-9 mt-2">
+        <label class="form-label" for="email">Email</label>
+        <input class="form-control" type="text" [value]="response.email">
+    </div>
+    <div class="col-3 mt-2">
+        <label class="form-label" for="cep">CEP</label>
+        <input class="form-control" type="text" [value]="response.enderecoApi.cep">
+    </div>
+    <div class="col-2 mt-2">
+        <label class="form-label" for="uf">UF</label>
+        <input class="form-control" type="text" [value]="response.enderecoApi.uf">
+    </div>
+    <div class="col-7 mt-2">
+        <label class="form-label" for="logradouro">Logradouro</label>
+        <input class="form-control" type="text" [value]="response.enderecoApi.logradouro">
+    </div>
+    <div class="col-4 mt-2">
+        <label class="form-label" for="complemento">Complemento</label>
+        <input class="form-control" type="text" [value]="response.enderecoApi.complemento">
+    </div>
+    <div class="col-4 mt-2">
+        <label class="form-label" for="bairro">Bairro</label>
+        <input class="form-control" type="text" [value]="response.enderecoApi.bairro">
+    </div>
+    <div class="col-4 mt-2">
+        <label class="form-label" for="cidade">Cidade</label>
+        <input class="form-control" type="text" [value]="response.enderecoApi.cidade">
+    </div>
+</div>

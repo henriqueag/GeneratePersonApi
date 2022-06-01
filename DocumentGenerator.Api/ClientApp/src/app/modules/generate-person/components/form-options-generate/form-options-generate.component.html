@@ -1,42 +1,50 @@
 <h5>Parâmetros opcionais</h5>
-<hr>
+<hr />
 <form [formGroup]="paramsForm">
     <div class="col-md-auto mb-2">
-        <label for="idade" class="form-label">Qual a idade da pessoa?</label>
-        <select class="form-select" id="selectIdade">
+        <label class="form-label">Qual a idade da pessoa?</label>
+        <select class="form-select" formControlName="idades">
             <option selected>Selecione</option>
-            <option *ngFor="let idade of idades" [value]="idade">{{ idade }}</option>
+            <option *ngFor="let idade of idades" [value]="idade">
+                {{ idade }}
+            </option>
         </select>
     </div>
     <div class="col-md-auto mb-2">
         <label class="form-label">Qual estado?</label>
-        <select class="form-select" aria-label="Default select example" (change)="getSelectCurrentValue()"
-            formControlName="estados" id="selectEstado">
+        <select class="form-select" (change)="getSelectCurrentValue()" formControlName="estados">
             <option>Selecione</option>
-            <option *ngFor="let estado of estados$ | async; index as i" [value]="i">{{ estado }}</option>
+            <option *ngFor="let estado of estados$ | async" [value]="estado.sigla">
+                {{ estado.nome }}
+            </option>
         </select>
     </div>
     <div class="col-md-auto mb-2">
         <label class="form-label">Qual cidade?</label>
-        <select class="form-select" aria-label="Default select example" id="selectCidade">
+        <select class="form-select" formControlName="cidades">
             <option selected>Selecione</option>
-            <option *ngFor="let cidade of cidades$ | async; index as i" [value]="i">{{ cidade }}</option>
+            <option *ngFor="let cidade of cidades$ | async" [value]="cidade">
+                {{ cidade }}
+            </option>
         </select>
     </div>
     <div class="col-md-auto mb-2">
         <label class="form-label">Gerar com pontuação?</label>
         <div class="d-flex">
-            <input class="form-check-input me-1" type="radio" name="gerarComPonto" id="comPonto" checked>
-            <label class="form-check-label" for="comPonto">Sim</label>
-            <input class="form-check-input ms-3 me-1" type="radio" name="gerarComPonto" id="semPonto">
-            <label class="form-check-label" for="semPonto">Não</label>
+            <div class="me-3" *ngFor="let item of gerarComMascara">
+                <label class="form-check-label" for="comPonto">
+                    <input class="form-check-input me-1" type="radio" name="gerarComMascara"
+                        formControlName="gerarComMascara" [value]="item.value" />{{ item.displayName }}
+                </label>
+            </div>
         </div>
     </div>
     <div class="col-md-auto">
         <label class="form-label">Gerar quantas pessoas?</label>
-        <input type="number" class="form-control" id="quantidade" value="1" min="1" max="10" placeholder="Máximo 10">
+        <input type="number" class="form-control" formControlName="quantidade" value="1" min="1" max="10"
+            placeholder="Máximo 10" />
     </div>
     <div class="col-md-auto">
-        <input type="button" value="Enviar" (click)="formSubmit()" class=" btn btn-primary my-3 w-100">
+        <input type="button" value="Enviar" (click)="formSubmit()" class="btn btn-primary my-3 w-100" />
     </div>
 </form>

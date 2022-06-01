@@ -1,20 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { GeneratePerson } from '../../models/generate-person.model';
 
 @Component({
-  selector: 'generate-person-page',
-  templateUrl: './generate-person-page.component.html'
+    selector: 'generate-person-page',
+    templateUrl: './generate-person-page.component.html'
 })
-export class GeneratePersonPageComponent implements OnInit {
+export class GeneratePersonPageComponent {
 
-  resultText: string;
+    result: GeneratePerson;
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-  getEvent(event: any) {
-    this.resultText = JSON.stringify(event, null, 4);
-  }
+    getEvent(event: any) {
+        this.result = event as GeneratePerson;
+    }
 
 }

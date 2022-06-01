@@ -35,7 +35,7 @@ namespace DocumentGenerator
             services.AddDbContext<AppDataContext>(options =>
             {
                 // options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection1"));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddScoped<IDatabaseService, DatabaseService>();
             services.AddScoped<IDocumentService, DocumentService>();

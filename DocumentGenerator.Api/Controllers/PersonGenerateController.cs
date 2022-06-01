@@ -17,15 +17,14 @@ namespace DocumentGenerator.Api.Controllers
         }
 
         [HttpGet("onePerson")]
-        public async Task<IActionResult> GetPessoa([FromQuery] int? idade = null, [FromQuery] string estadoBR_sigla = null, [FromQuery] string cidade = null, [FromQuery] bool gerarComPonto = true)
+        public async Task<IActionResult> GetPessoa([FromQuery] int? idade = null, [FromQuery] string estadoBR_sigla = null, [FromQuery] string cidade = null, [FromQuery] bool gerarComMascara = true)
         {
             try
             {
-                var model = await _service.GerarPessoaAsync(idade, estadoBR_sigla, cidade, gerarComPonto);
-                if (model is null)
-                {
+                var model = await _service.GerarPessoaAsync(idade, estadoBR_sigla, cidade, gerarComMascara);
+                if (model is null)                
                     return NotFound();
-                }
+                
                 return Ok(model.ToApi());
             }
             catch (System.Exception ex)
@@ -35,15 +34,14 @@ namespace DocumentGenerator.Api.Controllers
         }
 
         [HttpGet("listPerson")]
-        public async Task<IActionResult> GetListPessoas([FromQuery] int qtdPessoas, [FromQuery] int? idade = null, [FromQuery] string estadoBR_sigla = null, [FromQuery] string cidade = null, [FromQuery] bool gerarComPonto = true)
+        public async Task<IActionResult> GetListPessoas([FromQuery] int quantidade, [FromQuery] int? idade = null, [FromQuery] string estadoBR_sigla = null, [FromQuery] string cidade = null, [FromQuery] bool gerarComMascara = true)
         {
             try
             {
-                var model = await _service.GerarListPessoaAsync(qtdPessoas, idade, estadoBR_sigla, cidade, gerarComPonto);
-                if (model is null)
-                {
+                var model = await _service.GerarListPessoaAsync(quantidade, idade, estadoBR_sigla, cidade, gerarComMascara);
+                if (model is null)                
                     return NotFound();
-                }
+                
                 return Ok(model.ToApi());
             }
             catch (System.Exception ex)

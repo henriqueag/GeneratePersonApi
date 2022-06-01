@@ -9,15 +9,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [
-    GeneratePersonPageComponent,
-    FormOptionsGenerateComponent,
-    ResultGeneratePersonComponent
-  ],
-  imports: [
-    CommonModule,
-    GeneratePersonRoutingModule,
-    ReactiveFormsModule
-  ]
+    declarations: [
+        GeneratePersonPageComponent,
+        FormOptionsGenerateComponent,
+        ResultGeneratePersonComponent
+    ],
+    imports: [
+        CommonModule,
+        GeneratePersonRoutingModule,
+        ReactiveFormsModule
+    ]
 })
 export class GeneratePersonModule { }

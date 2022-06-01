@@ -21,7 +21,7 @@ namespace DocumentGenerator.Api.Services
             _documentService = documentService;
         }
 
-        public async Task<Pessoa> GerarPessoaAsync(int? idade = null, string estadoBR_sigla = null, string cidade = null, bool gerarComPonto = true)
+        public async Task<Pessoa> GerarPessoaAsync(int? idade = null, string estadoBR_sigla = null, string cidade = null, bool gerarComMascara = true)
         {
             Pessoa pessoa = null;
 
@@ -30,8 +30,8 @@ namespace DocumentGenerator.Api.Services
                 var endereco = await _enderecoService.GetEnderecoAsync(estadoBR_sigla, cidade);
                 var uf = endereco.Uf;
                 var nome = GerarNomeAleatorio().Result;
-                var cpf = _documentService.GeraCPFValido(uf, gerarComPonto);
-                var rg = _documentService.GeraRGValido(gerarComPonto);
+                var cpf = _documentService.GeraCPFValido(uf, gerarComMascara);
+                var rg = _documentService.GeraRGValido(gerarComMascara);
                 var telefone = _documentService.GeraTelefoneAleatorio(endereco);
                 var email = _documentService.GeraEmailAleatorio(nome);
                 // idade
@@ -87,7 +87,7 @@ namespace DocumentGenerator.Api.Services
             return pessoa;
         }
 
-        public async Task<IEnumerable<Pessoa>> GerarListPessoaAsync(int quantidade = 1, int? idade = null, string estadoBR_sigla = null, string cidade = null, bool gerarComPonto = true)
+        public async Task<IEnumerable<Pessoa>> GerarListPessoaAsync(int quantidade = 1, int? idade = null, string estadoBR_sigla = null, string cidade = null, bool gerarComMascara = true)
         {
             List<Pessoa> pessoas = new();
             int cont = 0;
@@ -95,7 +95,7 @@ namespace DocumentGenerator.Api.Services
             while (true)
             {
                 cont++;
-                var pessoa = await GerarPessoaAsync(idade, estadoBR_sigla, cidade, gerarComPonto);
+                var pessoa = await GerarPessoaAsync(idade, estadoBR_sigla, cidade, gerarComMascara);
                 pessoas.Add(pessoa);
                 if (cont == quantidade)
                 {
