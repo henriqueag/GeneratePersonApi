@@ -1,40 +1,46 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using DocumentGeneratorApp.Api.Services;
 
-namespace DocumentGeneratorApp.Api.Controllers
+namespace DocumentGeneratorApp.Api.Controllers;
+
+/// <summary>
+/// Api que disponibiliza funções de validação de documentos
+/// </summary>
+[ApiController]
+[Route(_route)]
+public class ValidatorController : ControllerBase
 {
-    [ApiController]
-    [Route("api/v1/[controller]")]
-    public class ValidatorController : ControllerBase
+    private const string _route = "api/validator";
+
+    /// <summary>
+    /// Faz a validação de um cpf
+    /// </summary>
+    /// <param name="cpf"></param>
+    /// <returns></returns>
+    [HttpGet("cpf")]
+    public IActionResult ValidateCpf(string cpf)
     {
-        [HttpGet("cpf_validator")]
-        public IActionResult ValidarCPF(string cpf)
-        {
-            if (Validations.ValidaCPF(cpf))
-            {
-                return Ok("CPF válido");
-            }
-            return BadRequest("CPF inválido.");
-        }
+        return Ok();
+    }
 
-        [HttpGet("cnpj_validator")]
-        public IActionResult ValidarCNPJ(string cnpj)
-        {
-            if (Validations.ValidaCNPJ(cnpj))
-            {
-                return Ok("CNPJ válido");
-            }
-            return BadRequest("CNPJ inválido.");
-        }
+    /// <summary>
+    /// Faz a validação de um cnpj
+    /// </summary>
+    /// <param name="cnpj"></param>
+    /// <returns></returns>
+    [HttpGet("cnpj")]
+    public IActionResult ValidateCnpj(string cnpj)
+    {
+        return Ok();
+    }
 
-        [HttpGet("rg_validator")]
-        public IActionResult ValidarRG(string rg)
-        {
-            if (Validations.ValidaRG(rg))
-            {
-                return Ok("RG válido");
-            }
-            return BadRequest("RG inválido.");
-        }
+    /// <summary>
+    /// Faz a validação de um registro geral(RG)
+    /// </summary>
+    /// <param name="rg"></param>
+    /// <returns></returns>
+    [HttpGet("rg")]
+    public IActionResult ValidateRg(string rg)
+    {
+        return Ok();
     }
 }

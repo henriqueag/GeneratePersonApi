@@ -9,7 +9,6 @@
         <RootNamespace>DocumentGeneratorApp.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
         <AssemblyName>DocumentGeneratorApp.$(MSBuildProjectName)</AssemblyName>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <StartupObject>DocumentGeneratorApp.Program</StartupObject>
     </PropertyGroup>
 
     <ItemGroup>
@@ -31,6 +30,8 @@
         <Using Include="Microsoft.OpenApi.Models" />
         <Using Include="Serilog" />
         <Using Include="Swashbuckle.AspNetCore.SwaggerUI" />
+        <Using Include="Microsoft.AspNetCore.Mvc" />
+        <Using Include="DocumentGeneratorApp.Domain" />
     </ItemGroup>
 
 </Project>

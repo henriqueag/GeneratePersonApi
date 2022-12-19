@@ -1,38 +1,44 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using DocumentGeneratorApp.Api.Interfaces;
 
-namespace DocumentGeneratorApp.Api.Controllers
+namespace DocumentGeneratorApp.Api.Controllers;
+
+/// <summary>
+/// Api que disponibiliza funções de geração de documentos válidos
+/// </summary>
+[ApiController]
+[Route(_route)]
+public class DocumentController : ControllerBase
 {
-    [ApiController]
-    [Route("api/v1/[controller]")]
-    public class DocumentController : ControllerBase
+    private const string _route = "api/document";
+
+    /// <summary>
+    /// Obtém um cpf válido conforme o estado brasileiro informado
+    /// </summary>
+    /// <param name="abbreviationState">A sigla de qualquer estado brasileiro existente</param>
+    /// <returns></returns>
+    [HttpGet("generate-cpf")]
+    public IActionResult GetCpf([FromQuery] string abbreviationState)
     {
-        private readonly IDocumentService _documentService;
+        return Ok();
+    }
 
-        public DocumentController(IDocumentService documentService)
-        {
-            _documentService = documentService;
-        }
+    /// <summary>
+    /// Obtém um cnpj válido
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet("generate-cnpj")]
+    public IActionResult GetCnpj()
+    {
+        return Ok();
+    }
 
-        [HttpGet("cpf_generator")]
-        public IActionResult GetCPFValido([FromQuery] string estadoBR_sigla, [FromQuery] bool gerarComPonto = true)
-        {
-            var cpf = _documentService.GeraCPFValido(estadoBR_sigla, gerarComPonto);
-            return Ok(cpf);
-        }
-
-        [HttpGet("cnpj_generator")]
-        public IActionResult GetCNPJValido()
-        {
-            var cnpj = _documentService.GeraCNPJValido();
-            return Ok(cnpj);
-        }
-
-        [HttpGet("rg_generator")]
-        public IActionResult GetRGValido([FromQuery] bool gerarComPonto = true)
-        {
-            var rg = _documentService.GeraRGValido(gerarComPonto);
-            return Ok(rg);
-        }
+    /// <summary>
+    /// Obtém um registo geral(RG) válido
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet("generate-rg")]
+    public IActionResult GetRg()
+    {
+        return Ok();
     }
 }

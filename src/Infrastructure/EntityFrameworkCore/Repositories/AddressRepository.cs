@@ -1,5 +1,6 @@
 ﻿using DocumentGeneratorApp.Domain;
 using DocumentGeneratorApp.Infrastructure.EntityFrameworkCore;
+using System;
 
 namespace DocumentGeneratorApp.Infrastructure;
 
@@ -12,21 +13,23 @@ public class AddressRepository : IAddressRepository
         _context = context;
     }
 
-    public async Task<IEnumerable<string>> GetCities(BrazilianStateAbbreviation state, CancellationToken cancellationToken)
+    public async Task<IReadOnlyCollection<string>> GetCitiesAsync(string brazilianState, CancellationToken cancellationToken)
     {
+        FormattableString sql = $"SELECT DISTINCT [City], [State] FROM [Address] WHERE [State] = {brazilianState}";
+
         return await _context.Set<Address>()
-            .AsNoTracking()
-            .Where(x => x.State.Equals(state.ToString()))
+            .FromSql(sql)
             .Select(x => x.City)
             .ToListAsync(cancellationToken: cancellationToken);
     }
 
-    public async Task<IEnumerable<BrazilianStates>> GetBrazilianStates(CancellationToken cancellationToken)
+    public async Task<IReadOnlyCollection<BrazilianStates>> GetBrazilianStatesAsync(CancellationToken cancellationToken)
     {
+        const string sql = "SELECT [*] FROM [CapitalCityAndState]";
+
         return await _context.Set<Address>()
-            .AsNoTracking()
-            .DistinctBy(x => x.State)
+            .FromSqlRaw(sql)
             .Select(x => new BrazilianStates(x.City, x.State))
-            .ToListAsync(cancellationToken: cancellationToken);
+            .ToListAsync(cancellationToken);
     }
 }

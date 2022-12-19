@@ -5,13 +5,13 @@ public interface IAddressRepository
     /// <summary>
     /// Obtém as cidades existentes para o estado brasileiro informado
     /// </summary>
-    /// <param name="state"></param>
+    /// <param name="brazilianState"></param>
     /// <returns></returns>
-    Task<IEnumerable<string>> GetCities(BrazilianStateAbbreviation state, CancellationToken cancellationToken);
+    Task<IReadOnlyCollection<string>> GetCitiesAsync(string brazilianState, CancellationToken cancellationToken);
 
     /// <summary>
     /// Obtém uma lista com os estados brasileiros
     /// </summary>
     /// <returns></returns>
-    Task<IEnumerable<BrazilianStates>> GetBrazilianStates(CancellationToken cancellationToken);
+    Task<IReadOnlyCollection<BrazilianStates>> GetBrazilianStatesAsync(CancellationToken cancellationToken);
 }

@@ -7,7 +7,10 @@ public class AddressConfiguration : IEntityTypeConfiguration<Address>
     public void Configure(EntityTypeBuilder<Address> builder)
     {
         builder.HasKey(x => x.Id)
-            .HasName("PK_Id_Address");
+            .HasName("PK_AddressId_Address");
+
+        builder.HasIndex(x => x.City)
+            .HasDatabaseName("INDEX_City_Address");
 
         builder.Property(x => x.Cep)
             .HasMaxLength(10)
@@ -27,7 +30,10 @@ public class AddressConfiguration : IEntityTypeConfiguration<Address>
         builder.Property(x => x.Ddd)
             .HasMaxLength(2)
             .HasColumnType("char")
-            .IsRequired();
+            .IsRequired(required: false);
+
+        builder.Property(x => x.IsCapital)
+            .HasColumnType("bit");
 
         builder.Ignore(x => x.Complement);
         

@@ -1,25 +1,20 @@
 using DocumentGeneratorApp.Api.Extensions;
+using System.Text.Json.Serialization;
 
-var builder = WebApplication.CreateBuilder();
-
-// Serilog
-builder.Logging.ClearProviders();
-builder.Host.UseSerilog((builder, config) =>
-{
-    string logPath = $"logs/app-log-{DateTime.Now:dd-MM-yyyy-HH-mm-ss}.txt";
-
-    config.MinimumLevel.Information()
-        .ReadFrom.Configuration(builder.Configuration)
-        .Enrich.FromLogContext()
-        .Enrich.WithEnvironmentName()
-        .Enrich.WithMachineName()
-        .Enrich.WithProperty("ApplicationName", "Document Generator")
-        .Enrich.WithProperty("ApplicationVersion", "1.0.0")
-        .WriteTo.File(logPath, rollingInterval: RollingInterval.Day)
-        .CreateLogger();
-});
+var builder = WebApplication.CreateBuilder(args);
 
 // Serviços
+builder.Services.AddControllers()
+    .AddJsonOptions(opt =>
+    {
+        opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddRouting();
+
+builder.Services.AddAuthorization();
+
 builder.Services.RegisterModules(builder.Configuration);
 
 // Swagger
@@ -58,6 +53,23 @@ builder.Services.AddCors(cors =>
     });
 });
 
+// Serilog
+builder.Logging.ClearProviders();
+builder.Host.UseSerilog((builder, config) =>
+{
+    string logPath = $"{AppDomain.CurrentDomain.BaseDirectory}/logs/app-log-{DateTime.Now:dd-MM-yyyy-HH-mm-ss}.txt";
+
+    config.MinimumLevel.Verbose()
+        .ReadFrom.Configuration(builder.Configuration)
+        .Enrich.FromLogContext()
+        .Enrich.WithEnvironmentName()
+        .Enrich.WithMachineName()
+        .Enrich.WithProperty("ApplicationName", "Document Generator")
+        .Enrich.WithProperty("ApplicationVersion", "1.0.0")
+        .WriteTo.Console()
+        .WriteTo.File(logPath, rollingInterval: RollingInterval.Day);
+});
+
 // Configurações
 var app = builder.Build();
 
@@ -72,3 +84,5 @@ app.UseSwaggerUI(options =>
 app.UseCors();
 app.UseAuthorization();
 app.MapControllers();
+
+app.Run();
