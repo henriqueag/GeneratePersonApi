@@ -37,7 +37,7 @@ public class AddressController : AbstractController
     [HttpGet("brasilian-cities")]
     public async Task<IActionResult> GetCitiesAsync([FromQuery] BrazilianStateAbbreviation abbreviationState, CancellationToken cancellationToken)
     {
-        _logger.LogInformation("Requisição do tipo {RequestVerb} {RequestUrl} para obter cidades para o estado de {BrasilianState}",
+        _logger.LogInformation("Requisição {RequestVerb} {RequestUrl} para obter cidades para o estado de {BrasilianState}",
             Request.Method, Request.Path.Value, abbreviationState);
 
         var result = await _repository.GetCitiesAsync(abbreviationState.ToString(), cancellationToken);
@@ -53,7 +53,7 @@ public class AddressController : AbstractController
     [HttpGet("brasilian-states")]
     public async Task<IActionResult> GetBrasilianStatesAsync(CancellationToken cancellationToken)
     {
-        _logger.LogInformation("Requisição do tipo {RequestVerb} {RequestUrl} para obter os estados do Brasil",
+        _logger.LogInformation("Requisição {RequestVerb} {RequestUrl} para obter os estados do Brasil",
             Request.Method, Request.Path.Value);
 
         var result = await _repository.GetBrazilianStatesAsync(cancellationToken);

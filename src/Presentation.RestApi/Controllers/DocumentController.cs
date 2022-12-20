@@ -8,30 +8,45 @@ public class DocumentController : AbstractController
 {
     private const string _route = "api/document";
 
-    public DocumentController(ILogger<AbstractController> logger) 
+    private readonly IDocumentGenerator _generator;
+
+    public DocumentController(IDocumentGenerator generator, ILogger<AbstractController> logger) 
         : base(logger)
     {
+        _generator = generator;
     }
 
     /// <summary>
     /// Obtém um cpf válido conforme o estado brasileiro informado
     /// </summary>
     /// <param name="abbreviationState">A sigla de qualquer estado brasileiro existente</param>
+    /// <param name="withMask">Determina se o resultado terá mascara de cpf ou não</param>
     /// <returns></returns>
     [HttpGet("generate-cpf")]
-    public IActionResult GetCpf([FromQuery] string abbreviationState)
+    public IActionResult GetCpf([FromQuery] BrazilianStateAbbreviation abbreviationState, [FromQuery] bool withMask = true)
     {
-        return Ok();
+        _logger.LogInformation("Requisição {RequestVerb} {RequestUrl} para obter um cpf aleatório do estado de {BrasilianState}",
+            Request.Method, Request.Path.Value, abbreviationState);
+
+        var result = _generator.GenerateCpf(abbreviationState, withMask: withMask);
+
+        return Ok(new { Cpf = result });
     }
 
     /// <summary>
     /// Obtém um cnpj válido
     /// </summary>
+    /// <param name="withMask">Determina se o resultado terá mascara de cnpj ou não</param>
     /// <returns></returns>
     [HttpGet("generate-cnpj")]
-    public IActionResult GetCnpj()
+    public IActionResult GetCnpj([FromQuery] bool withMask = true)
     {
-        return Ok();
+        _logger.LogInformation("Requisição {RequestVerb} {RequestUrl} para obter um cnpj aleatório",
+            Request.Method, Request.Path.Value);
+
+        var result = _generator.GenerateCnpj(withMask: withMask);
+
+        return Ok(new { Cnpj = result });
     }
 
     /// <summary>

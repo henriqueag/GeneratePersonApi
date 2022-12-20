@@ -8,31 +8,52 @@ public class ValidatorController : AbstractController
 {
     private const string _route = "api/validator";
 
-    public ValidatorController(ILogger<AbstractController> logger) 
+    private readonly IDocumentValidator _validator;
+
+    public ValidatorController(IDocumentValidator validator, ILogger<AbstractController> logger) 
         : base(logger)
     {
+        _validator = validator;
     }
 
     /// <summary>
     /// Faz a validação de um cpf
     /// </summary>
-    /// <param name="cpf"></param>
+    /// <param name="cpf">Cpf para validação</param>
     /// <returns></returns>
-    [HttpGet("cpf")]
-    public IActionResult ValidateCpf(string cpf)
+    [HttpPost("cpf")]
+    public IActionResult ValidateCpf([FromQuery] string cpf)
     {
-        return Ok();
+        _logger.LogInformation("Requisição {RequestVerb} {RequestUrl} para validar se o cpf {Cpf} é válido",
+            Request.Method, Request.Path.Value, cpf);
+
+        var result = new
+        {
+            TargetCpf = cpf,
+            IsValid = _validator.ValidateCpf(cpf)
+        };
+
+        return Ok(result);
     }
 
     /// <summary>
     /// Faz a validação de um cnpj
     /// </summary>
-    /// <param name="cnpj"></param>
+    /// <param name="cnpj">Cnpj para validação</param>
     /// <returns></returns>
-    [HttpGet("cnpj")]
-    public IActionResult ValidateCnpj(string cnpj)
+    [HttpPost("cnpj")]
+    public IActionResult ValidateCnpj([FromQuery] string cnpj)
     {
-        return Ok();
+        _logger.LogInformation("Requisição {RequestVerb} {RequestUrl} para validar se o cnpj {Cnpj} é válido",
+            Request.Method, Request.Path.Value, cnpj);
+
+        var result = new
+        {
+            TargetCnpj = cnpj,
+            IsValid = _validator.ValidateCnpj(cnpj)
+        };
+
+        return Ok(result);
     }
 
     /// <summary>
@@ -40,8 +61,8 @@ public class ValidatorController : AbstractController
     /// </summary>
     /// <param name="rg"></param>
     /// <returns></returns>
-    [HttpGet("rg")]
-    public IActionResult ValidateRg(string rg)
+    [HttpPost("rg")]
+    public IActionResult ValidateRg([FromQuery] string rg)
     {
         return Ok();
     }
