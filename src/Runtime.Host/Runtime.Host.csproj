@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <LangVersion>10.0</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <IsPackable>false</IsPackable>
+        <RootNamespace>DocumentGeneratorApp.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+        <AssemblyName>DocumentGeneratorApp.$(MSBuildProjectName)</AssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Serilog" Version="2.12.0" />
+        <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
+        <PackageReference Include="Serilog.Enrichers.Environment" Version="2.2.0" />
+        <PackageReference Include="Serilog.Settings.Configuration" Version="3.4.0" />
+        <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
+        <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Domain\Domain.csproj" />
+        <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+        <ProjectReference Include="..\Presentation.RestApi\Presentation.RestApi.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Using Include="Microsoft.OpenApi.Models" />
+        <Using Include="Serilog" />
+        <Using Include="Swashbuckle.AspNetCore.SwaggerUI" />
+        <Using Include="Microsoft.AspNetCore.Mvc" />
+        <Using Include="DocumentGeneratorApp.Domain" />
+        <Using Include="DocumentGeneratorApp.Domain" />
+        <Using Include="DocumentGeneratorApp.Infrastructure.EntityFrameworkCore" />
+        <Using Include="DocumentGeneratorApp.Infrastructure.ExternalApi" />
+        <Using Include="DocumentGeneratorApp.Api.Extensions" />
+        <Using Include="System.Text.Json.Serialization" />
+        <Using Include="DocumentGeneratorApp.Presentation.RestApi.Extensions" />        
+    </ItemGroup>
+
+</Project>

@@ -1,6 +1,5 @@
 ﻿using DocumentGeneratorApp.Domain;
 using DocumentGeneratorApp.Infrastructure.EntityFrameworkCore;
-using System;
 
 namespace DocumentGeneratorApp.Infrastructure;
 
@@ -25,7 +24,7 @@ public class AddressRepository : IAddressRepository
 
     public async Task<IReadOnlyCollection<BrazilianStates>> GetBrazilianStatesAsync(CancellationToken cancellationToken)
     {
-        const string sql = "SELECT [*] FROM [CapitalCityAndState]";
+        const string sql = "SELECT [City], [State] FROM [CapitalCityAndState]";
 
         return await _context.Set<Address>()
             .FromSqlRaw(sql)

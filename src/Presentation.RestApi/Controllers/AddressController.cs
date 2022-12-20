@@ -1,21 +1,19 @@
-﻿namespace DocumentGeneratorApp.Api.Controllers;
+﻿namespace DocumentGeneratorApp.Presentation.RestApi.Controllers;
 
 /// <summary>
 /// Api que disponibiliza funções para obtenção de endereços do Brasil
 /// </summary>
-[ApiController]
 [Route(_route)]
-public class AddressController : ControllerBase
+public class AddressController : AbstractController
 {
     private const string _route = "api/address";
 
     private readonly IAddressRepository _repository;
-    private readonly ILogger<AddressController> _logger;
 
-    public AddressController(IAddressRepository repository, ILogger<AddressController> logger)
+    public AddressController(IAddressRepository repository, ILogger<AbstractController> logger) 
+        : base(logger)
     {
         _repository = repository;
-        _logger = logger;
     }
 
     /// <summary>

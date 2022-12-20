@@ -1,16 +1,17 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-
-namespace DocumentGeneratorApp.Api.Controllers;
+﻿namespace DocumentGeneratorApp.Presentation.RestApi.Controllers;
 
 /// <summary>
 /// Api que disponibiliza funções para gerar cadastros aleatórios de pessoas
 /// </summary>
-[ApiController]
 [Route(_route)]
-public class PersonController : ControllerBase
+public class PersonController : AbstractController
 {
     private const string _route = "api/person";
+
+    public PersonController(ILogger<AbstractController> logger) 
+        : base(logger)
+    {
+    }
 
     [HttpGet("one-person")]
     public async Task<IActionResult> GetOneAsync()

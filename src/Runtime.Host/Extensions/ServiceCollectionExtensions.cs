@@ -1,8 +1,4 @@
-﻿using DocumentGeneratorApp.Domain;
-using DocumentGeneratorApp.Infrastructure.EntityFrameworkCore;
-using DocumentGeneratorApp.Infrastructure.ExternalApi;
-
-namespace DocumentGeneratorApp.Api.Extensions;
+﻿namespace DocumentGeneratorApp.Api.Extensions;
 
 /// <summary>
 /// Extensões para interface IServiceCollection

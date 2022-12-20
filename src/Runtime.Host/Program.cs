@@ -1,6 +1,3 @@
-using DocumentGeneratorApp.Api.Extensions;
-using System.Text.Json.Serialization;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Serviços
@@ -12,6 +9,8 @@ builder.Services.AddControllers()
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddRouting();
+
+builder.Services.AddMvc().AddClasslibPart();
 
 builder.Services.AddAuthorization();
 
@@ -57,7 +56,7 @@ builder.Services.AddCors(cors =>
 builder.Logging.ClearProviders();
 builder.Host.UseSerilog((builder, config) =>
 {
-    string logPath = $"{AppDomain.CurrentDomain.BaseDirectory}/logs/app-log-{DateTime.Now:dd-MM-yyyy-HH-mm-ss}.txt";
+    string logPath = $"{AppDomain.CurrentDomain.BaseDirectory}/logs/document-generator.txt";
 
     config.MinimumLevel.Verbose()
         .ReadFrom.Configuration(builder.Configuration)

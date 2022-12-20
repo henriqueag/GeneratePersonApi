@@ -1,15 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace DocumentGeneratorApp.Api.Controllers;
+﻿namespace DocumentGeneratorApp.Presentation.RestApi.Controllers;
 
 /// <summary>
 /// Api que disponibiliza funções de geração de documentos válidos
 /// </summary>
-[ApiController]
 [Route(_route)]
-public class DocumentController : ControllerBase
+public class DocumentController : AbstractController
 {
     private const string _route = "api/document";
+
+    public DocumentController(ILogger<AbstractController> logger) 
+        : base(logger)
+    {
+    }
 
     /// <summary>
     /// Obtém um cpf válido conforme o estado brasileiro informado

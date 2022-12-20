@@ -1,15 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace DocumentGeneratorApp.Api.Controllers;
+﻿namespace DocumentGeneratorApp.Presentation.RestApi.Controllers;
 
 /// <summary>
 /// Api que disponibiliza funções de validação de documentos
 /// </summary>
-[ApiController]
 [Route(_route)]
-public class ValidatorController : ControllerBase
+public class ValidatorController : AbstractController
 {
     private const string _route = "api/validator";
+
+    public ValidatorController(ILogger<AbstractController> logger) 
+        : base(logger)
+    {
+    }
 
     /// <summary>
     /// Faz a validação de um cpf

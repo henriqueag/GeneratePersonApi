@@ -1,6 +1,6 @@
 {
     "profiles":{
-        "DocumentGenerator": {
+        "Runtime.Host": {
             "commandName": "Project",
             "launchBrowser": true,
             "environmentVariables": {
