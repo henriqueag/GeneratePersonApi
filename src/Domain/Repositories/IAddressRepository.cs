@@ -13,5 +13,13 @@ public interface IAddressRepository
     /// Obtém uma lista com os estados brasileiros
     /// </summary>
     /// <returns></returns>
-    Task<IReadOnlyCollection<BrazilianStates>> GetBrazilianStatesAsync(CancellationToken cancellationToken);
+    Task<IReadOnlyCollection<BrazilianState>> GetBrazilianStatesAsync(CancellationToken cancellationToken);
+
+    /// <summary>
+    /// Obtém uma lista com todos os ceps da cidade passada como argumento
+    /// </summary>
+    /// <param name="city"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<IReadOnlyCollection<string>> GetCepsByCityAsync(string city, CancellationToken cancellationToken);
 }

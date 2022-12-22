@@ -7,6 +7,7 @@ public class DocumentValidator : IDocumentValidator
 {
     private const string _repeatedNumberPatternForCpf = @"1{11}|2{11}|3{11}|4{11}|5{11}|6{11}|7{11}|8{11}|9{11}|0{11}";
     private const string _repeatedNumberPatternForCnpj = @"1{14}|2{14}|3{14}|4{14}|5{14}|6{14}|7{14}|8{14}|9{14}|0{14}";
+    private const string _repeatedNumberPatternForRg = @"1{9}|2{9}|3{9}|4{9}|5{9}|6{9}|7{9}|8{9}|9{9}|0{9}";
 
     public bool ValidateCnpj(string cnpj)
     {
@@ -58,7 +59,36 @@ public class DocumentValidator : IDocumentValidator
 
     public bool ValidateRg(string rg)
     {
-        throw new NotImplementedException();
+        var rgOnlyNumbers = GetOnlyNumbers(rg);
+
+        if(rgOnlyNumbers.Length != 9)
+        {
+            return false;
+        }
+
+        var areRepeatedNumbers = new Regex(_repeatedNumberPatternForRg).IsMatch(rgOnlyNumbers);
+        if (areRepeatedNumbers)
+        {
+            return false;
+        }
+
+        int digit = 0;
+        int multiplier = 2;
+
+        for (int i = 0; i < 8; i++)
+        {
+            int convertedDigit = int.Parse($"{rgOnlyNumbers[i]}");
+            digit += convertedDigit * multiplier;
+
+            multiplier++;
+        }
+
+        var digitExpr = 11 - (digit % 11);
+        digit = digitExpr == 11 ? 0 : digitExpr;
+
+        var lastDigit = int.Parse(rgOnlyNumbers.Substring(rgOnlyNumbers.Length - 1, 1));
+
+        return lastDigit == digit;        
     }
 
     private static string GetOnlyNumbers(string input)

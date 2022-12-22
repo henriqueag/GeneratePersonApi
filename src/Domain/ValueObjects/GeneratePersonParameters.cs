@@ -1,15 +1,21 @@
-﻿namespace DocumentGeneratorApp.Domain;
+﻿using DocumentGeneratorApp.Domain.ValueObjects;
+
+namespace DocumentGeneratorApp.Domain;
 
 public record GeneratePersonParameters
 {
-    public GeneratePersonParameters(int? age, string city, BrazilianStateAbbreviation state)
+    private readonly int? _minAge;
+    private readonly int? _maxAge;
+    private readonly RandomAddressConditions _conditions;
+
+    public GeneratePersonParameters(int? minAge, int? maxAge, RandomAddressConditions conditions)
     {
-        Age = age;
-        City = city;
-        State = state;
+        _minAge = minAge;
+        _maxAge = maxAge;
+        _conditions = conditions;
     }
 
-    public int? Age { get; }
-    public string City { get; }
-    public BrazilianStateAbbreviation State { get; }
+    public int MinAge => _minAge ?? 18;
+    public int MaxAge => _maxAge ?? 89;
+    public RandomAddressConditions Conditions => _conditions ?? RandomAddressConditions.Default;
 }

@@ -19,10 +19,10 @@ public interface IPersonInformation
     /// <summary>
     /// Cria uma data de nascimento aleátoria
     /// </summary>
-    /// <param name="minAge">Idade mínina (padrão é 18)</param>
-    /// <param name="maxAge">Idade máxima (padrão é 89)</param>
+    /// <param name="minAge">Idade mínina</param>
+    /// <param name="maxAge">Idade máxima</param>
     /// <returns></returns>
-    DateTime GenerateRandomBirthDate(int minAge = 18, int maxAge = 89);
+    DateTime GenerateRandomBirthDate(int minAge, int maxAge);
 
     /// <summary>
     /// Obtém a idade calculada conforme a data de nascimento informada
@@ -36,5 +36,5 @@ public interface IPersonInformation
     /// </summary>
     /// <param name="address"></param>
     /// <returns></returns>
-    string GenerateRandomPhone(Address address);
+    string GenerateRandomPhone(string ddd);
 }

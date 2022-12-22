@@ -1,8 +1,8 @@
 namespace DocumentGeneratorApp.Domain;
 
-public class BrazilianStates
+public class BrazilianState
 {
-    public BrazilianStates(string name, string abbreviation)
+    public BrazilianState(string name, string abbreviation)
     {
         Name = name;
         Abbreviation = abbreviation;

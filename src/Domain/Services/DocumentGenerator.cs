@@ -69,8 +69,9 @@ public class DocumentGenerator : IDocumentGenerator
     public string GenerateRg(bool withMask = true)
     {
         string rgResult = string.Empty;
-        while (_validator.ValidateRg(rgResult))
+        while (!_validator.ValidateRg(rgResult))
         {
+            rgResult = string.Empty;
             for (int i = 0; i < 9; i++)
             {
                 rgResult += s_random.Next(0, 9);

@@ -2,5 +2,5 @@
 
 public class DocumentGeneratorTests
 {
-
+    private readonly DocumentGenerator _subject;
 }

@@ -16,6 +16,8 @@ builder.Services.AddAuthorization();
 
 builder.Services.RegisterModules(builder.Configuration);
 
+builder.Services.AddHttpClient();
+
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>

@@ -64,6 +64,15 @@ public class ValidatorController : AbstractController
     [HttpPost("rg")]
     public IActionResult ValidateRg([FromQuery] string rg)
     {
-        return Ok();
+        _logger.LogInformation("Requisição {RequestVerb} {RequestUrl} para validar se o registro geral(RG) {Rg} é válido",
+            Request.Method, Request.Path.Value, rg);
+
+        var result = new
+        {
+            TargetRg = rg,
+            IsValid = _validator.ValidateRg(rg)
+        };
+
+        return Ok(result);
     }
 }

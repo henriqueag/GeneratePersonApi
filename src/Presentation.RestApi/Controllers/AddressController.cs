@@ -1,4 +1,8 @@
-﻿namespace DocumentGeneratorApp.Presentation.RestApi.Controllers;
+﻿using DocumentGeneratorApp.Domain.ValueObjects;
+using DocumentGeneratorApp.Presentation.RestApi.Dtos;
+using Mapster;
+
+namespace DocumentGeneratorApp.Presentation.RestApi.Controllers;
 
 /// <summary>
 /// Api que disponibiliza funções para obtenção de endereços do Brasil
@@ -9,23 +13,31 @@ public class AddressController : AbstractController
     private const string _route = "api/address";
 
     private readonly IAddressRepository _repository;
+    private readonly IAddressService _service;
 
-    public AddressController(IAddressRepository repository, ILogger<AbstractController> logger) 
+    public AddressController(IAddressRepository repository, IAddressService service, ILogger<AbstractController> logger) 
         : base(logger)
     {
         _repository = repository;
+        _service = service;
     }
 
     /// <summary>
     /// Obtém um endereço conforme o estado e a cidade informada
     /// </summary>
-    /// <param name="abbreviationState">A sigla de qualquer estado brasileiro existente</param>
-    /// <param name="city">O nome da cidade relacionada ao estado brasileiro informado</param>
+    /// <param name="request">Corpo da requisição com nome do estado e cidade para preencher</param>
+    /// <param name="cancellationToken">Token de cancelamento</param>
     /// <returns></returns>
-    [HttpGet("brasilian-address")]
-    public async Task<IActionResult> GetAddressAsync([FromQuery] BrazilianStateAbbreviation abbreviationState, [FromQuery] string city)
+    [HttpPost("brasilian-address")]
+    public async Task<IActionResult> GetAddressAsync([FromBody] AddressRequest request, CancellationToken cancellationToken)
     {
-        return Ok();
+        _logger.LogInformation("Requisição {RequestVerb} {RequestUrl} para obter um endereço conforme as condições {@Conditions}",
+            Request.Method, Request.Path.Value, new { request.State, request.CityName });
+
+        var conditions = new RandomAddressConditions(request.State, request.CityName);
+        var result = await _service.GetAddressAsync(conditions, cancellationToken);
+                
+        return Ok(result.Adapt<AddressResponse>());
     }
 
     /// <summary>
@@ -57,7 +69,8 @@ public class AddressController : AbstractController
             Request.Method, Request.Path.Value);
 
         var result = await _repository.GetBrazilianStatesAsync(cancellationToken);
+        var resultSorted = result.OrderBy(x => x.Abbreviation);
 
-        return Ok(result);
+        return Ok(resultSorted.Adapt<IEnumerable<BrazilianStateResponse>>());
     }
 }

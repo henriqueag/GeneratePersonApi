@@ -1,9 +1,92 @@
-﻿namespace DocumentGeneratorApp.Domain;
+﻿using DocumentGeneratorApp.Domain.ValueObjects;
+using Microsoft.Extensions.Logging;
+
+namespace DocumentGeneratorApp.Domain;
 
 public class AddressService : IAddressService
 {
-    public Task<Address> GetAddressAsync(BrazilianStateAbbreviation state, string cityName)
+    private static readonly Random s_random = new();
+
+    private readonly IAddressRepository _repository;
+    private readonly IAddressDetailService _addressDetail;
+    private readonly ILogger<AddressService> _logger;
+
+    public AddressService(IAddressRepository repository, IAddressDetailService addressDetail, ILogger<AddressService> logger)
     {
-        throw new NotImplementedException();
+        _repository = repository;
+        _addressDetail = addressDetail;
+        _logger = logger;
+    }
+
+    public async Task<Address> GetAddressAsync(RandomAddressConditions randomConditions, CancellationToken cancellationToken)
+    {
+        _logger.LogInformation("Operação {OperationName} invocada com payload {@Payload}", nameof(GetAddressAsync), randomConditions);
+
+        return randomConditions switch
+        {
+            { TotallyRandom: true } => await GetAddressRandomAsync(cancellationToken),
+            { DefinedStateAndUndefinedCity: true } => await GetAddressWithDefinedStateAndUndefinedCityAsync(randomConditions.State.Value, cancellationToken),
+            { DefinedStateAndCity: true } => await GetAddressWithDefinedStateAndCityAsync(randomConditions.CityName, cancellationToken),
+            _ => null
+        };
+    }
+
+    private async Task<Address> GetAddressRandomAsync(CancellationToken cancellationToken)
+    {
+        _logger.LogDebug("Operação {OperationName} invocada para obter um endereço totalmente aleátorio", nameof(GetAddressRandomAsync));
+
+        var stateToArray = Enum.GetValues<BrazilianStateAbbreviation>();
+        var randomState = stateToArray[s_random.Next(0, stateToArray.Length)];
+
+        var cities = await _repository.GetCitiesAsync(randomState.ToString(), cancellationToken);
+        var randomCity = cities.ElementAt(s_random.Next(0, cities.Count));
+
+        var addressResult = Address.Default;
+        while (!addressResult.IsValidAddress())
+        {
+            var ceps = await _repository.GetCepsByCityAsync(randomCity, cancellationToken);
+            var randomCep = ceps.ElementAt(s_random.Next(0, ceps.Count));
+
+            addressResult = await _addressDetail.GetAddressByCepAsync(randomCep, cancellationToken);
+        }
+
+        return addressResult;
+    }
+
+    private async Task<Address> GetAddressWithDefinedStateAndUndefinedCityAsync(BrazilianStateAbbreviation state, CancellationToken cancellationToken)
+    {
+        _logger.LogDebug("Operação {OperationName} invocada para obter um endereço do estado de {State}", 
+            nameof(GetAddressWithDefinedStateAndUndefinedCityAsync), state);
+
+        var cities = await _repository.GetCitiesAsync(state.ToString(), cancellationToken);
+        var randomCity = cities.ElementAt(s_random.Next(0, cities.Count));
+
+        var addressResult = Address.Default;
+        while (!addressResult.IsValidAddress())
+        {
+            var ceps = await _repository.GetCepsByCityAsync(randomCity, cancellationToken);
+            var randomCep = ceps.ElementAt(s_random.Next(0, ceps.Count));
+
+            addressResult = await _addressDetail.GetAddressByCepAsync(randomCep, cancellationToken);
+        }
+
+        return addressResult;
+    }
+
+    private async Task<Address> GetAddressWithDefinedStateAndCityAsync(string cityName, CancellationToken cancellationToken)
+    {
+        _logger.LogDebug("Operação {OperationName} invocada para obter um endereço da cidade {CityName}", 
+            nameof(GetAddressWithDefinedStateAndCityAsync), cityName);
+
+        var addressResult = Address.Default;
+        while (!addressResult.IsValidAddress())
+        {
+            var ceps = await _repository.GetCepsByCityAsync(cityName, cancellationToken);
+            var randomCep = ceps.ElementAt(s_random.Next(0, ceps.Count));
+
+            addressResult = await _addressDetail.GetAddressByCepAsync(randomCep, cancellationToken);
+        }
+
+        return addressResult;
     }
 }

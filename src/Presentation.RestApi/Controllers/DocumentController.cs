@@ -54,8 +54,13 @@ public class DocumentController : AbstractController
     /// </summary>
     /// <returns></returns>
     [HttpGet("generate-rg")]
-    public IActionResult GetRg()
+    public IActionResult GetRg([FromQuery] bool withMask = true)
     {
-        return Ok();
+        _logger.LogInformation("Requisição {RequestVerb} {RequestUrl} para obter um registro geral(RG) aleatório",
+            Request.Method, Request.Path.Value);
+
+        var result = _generator.GenerateRg(withMask: withMask);
+
+        return Ok(new { Rg = result });
     }
 }

@@ -1,3 +1,5 @@
+using DocumentGeneratorApp.Domain.ValueObjects;
+
 namespace DocumentGeneratorApp.Domain;
 
 public interface IAddressService
@@ -8,5 +10,5 @@ public interface IAddressService
     /// <param name="state">Sigla do estado</param>
     /// <param name="cityName">Nome da cidade</param>
     /// <returns></returns>
-    Task<Address> GetAddressAsync(BrazilianStateAbbreviation state, string cityName);
+    Task<Address> GetAddressAsync(RandomAddressConditions randomConditions, CancellationToken cancellationToken);
 }

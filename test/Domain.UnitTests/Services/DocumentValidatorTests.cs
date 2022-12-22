@@ -1,8 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System;
-using Xunit.Abstractions;
-
-namespace DocumentGeneratorApp.Domain.UnitTests.Services;
+﻿namespace DocumentGeneratorApp.Domain.UnitTests.Services;
 
 public class DocumentValidatorTests
 {
@@ -85,7 +81,6 @@ public class DocumentValidatorTests
     [Theory]
     [InlineData("48.627.888/0001-1")]
     [InlineData("48.627.888/0001-154")]
-    [InlineData("48627888000115")]
     [InlineData("11111111111111")]
     [InlineData("22222222222222")]
     [InlineData("33333333333333")]
@@ -100,6 +95,55 @@ public class DocumentValidatorTests
     {
         // Act
         var result = _subject.ValidateCpf(cnpj);
+
+        // Assert
+        result.ShouldBeFalse();
+    }
+
+    [Fact]
+    public void ValidateRg_WhenRgIsValid_ShouldBeTrue()
+    {
+        // Arrange
+        const string rg = "43.999.928-5";
+
+        // Act
+        var result = _subject.ValidateRg(rg);
+
+        // Assert
+        result.ShouldBeTrue();
+    }
+
+    [Fact]
+    public void ValidateRg_WhenRgIsNotValid_ShouldBeFalse()
+    {
+        // Arrange
+        const string cpf = "43.999.928-3";
+
+        // Act
+        var result = _subject.ValidateRg(cpf);
+
+        // Assert
+        result.ShouldBeFalse();
+    }
+
+    [Theory]
+    [InlineData("43.999.928-")]
+    [InlineData("43.999.928-33")]
+    [InlineData("439999283")]
+    [InlineData("111111111")]
+    [InlineData("222222222")]
+    [InlineData("333333333")]
+    [InlineData("444444444")]
+    [InlineData("555555555")]
+    [InlineData("666666666")]
+    [InlineData("777777777")]
+    [InlineData("888888888")]
+    [InlineData("999999999")]
+    [InlineData("000000000")]
+    public void ValidateRg_WhenRgFormatIsNotValid_ShouldBeFalse(string rg)
+    {
+        // Act
+        var result = _subject.ValidateCpf(rg);
 
         // Assert
         result.ShouldBeFalse();

@@ -22,13 +22,21 @@ public class AddressRepository : IAddressRepository
             .ToListAsync(cancellationToken: cancellationToken);
     }
 
-    public async Task<IReadOnlyCollection<BrazilianStates>> GetBrazilianStatesAsync(CancellationToken cancellationToken)
+    public async Task<IReadOnlyCollection<BrazilianState>> GetBrazilianStatesAsync(CancellationToken cancellationToken)
     {
-        const string sql = "SELECT [City], [State] FROM [CapitalCityAndState]";
+        const string sql = "SELECT [City], [State] FROM [CapitalAndState]";
 
         return await _context.Set<Address>()
             .FromSqlRaw(sql)
-            .Select(x => new BrazilianStates(x.City, x.State))
+            .Select(x => new BrazilianState(x.City, x.State))
             .ToListAsync(cancellationToken);
+    }
+
+    public async Task<IReadOnlyCollection<string>> GetCepsByCityAsync(string city, CancellationToken cancellationToken)
+    {
+        return await _context.Set<Address>()
+            .Where(x => x.City.Equals(city))
+            .Select(x => x.Cep)
+            .ToListAsync(cancellationToken: cancellationToken);
     }
 }

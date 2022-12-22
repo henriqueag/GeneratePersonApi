@@ -7,5 +7,5 @@ public interface IAddressDetailService
     /// </summary>
     /// <param name="cep"></param>
     /// <returns></returns>
-    Task<Address> GetAddressByCepAsync(string cep);
+    Task<Address> GetAddressByCepAsync(string cep, CancellationToken cancellationToken);
 }

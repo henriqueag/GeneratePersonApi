@@ -4,6 +4,8 @@ namespace DocumentGeneratorApp.Domain;
 
 public class Address
 {
+    internal static readonly Address Default = new();
+
     public int Id { get; set; }
     public string Cep { get; set; }
     public string Street { get; set; }
@@ -13,4 +15,12 @@ public class Address
     public string State { get; set; }
     public string Ddd { get; set; }
     public bool IsCapital { get; set; }
+
+    public bool IsValidAddress()
+    {
+        return !string.IsNullOrEmpty(Street)
+            && !string.IsNullOrEmpty(District)
+            && !string.IsNullOrEmpty(City)
+            && !string.IsNullOrEmpty(State);
+    }
 }
