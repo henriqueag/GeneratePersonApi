@@ -12,6 +12,7 @@ public record RandomAddressConditions
         TotallyRandom = state is null && string.IsNullOrEmpty(cityName);
         DefinedStateAndUndefinedCity = state is not null && string.IsNullOrEmpty(cityName);
         DefinedStateAndCity = state is not null && !string.IsNullOrEmpty(cityName);
+        UndefinedStateAndDefinedCity = state is null && !string.IsNullOrEmpty(cityName);
     }
 
     public BrazilianStateAbbreviation? State { get; }
@@ -20,4 +21,5 @@ public record RandomAddressConditions
     public bool TotallyRandom { get; }
     public bool DefinedStateAndUndefinedCity { get; }
     public bool DefinedStateAndCity { get; }
+    public bool UndefinedStateAndDefinedCity { get; }
 }
