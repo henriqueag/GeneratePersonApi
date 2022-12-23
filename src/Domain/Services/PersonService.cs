@@ -23,6 +23,9 @@ public class PersonService : IPersonService
 
     public async Task<Person> GetRandomPersonAsync(GeneratePersonParameters parameters, CancellationToken cancellationToken)
     {
+        _logger.LogDebug("Operação {OperationName} invocada para obter um cadastro aleátorio de pessoa com o payload {@Payload}",
+            nameof(GetRandomPersonAsync), parameters);
+
         var birthDate = _personInformation.GenerateRandomBirthDate(parameters.MinAge, parameters.MaxAge);
         var age = _personInformation.GetCalculatedAge(birthDate);
         var address = await _addressService.GetAddressAsync(parameters.Conditions, cancellationToken);
@@ -43,6 +46,9 @@ public class PersonService : IPersonService
 
     public async Task<IEnumerable<Person>> GetRandomPersonListAsync(GeneratePersonParameters parameters, CancellationToken cancellationToken, int quantity = 1)
     {
+        _logger.LogDebug("Operação {OperationName} invocada para obter uma lista com {Quantity} cadastros aleátorios de pessoas com o payload {@Payload}",
+            nameof(GetRandomPersonListAsync), quantity, parameters);
+
         var personsResult = new List<Person>(quantity);
 
         for (int i = 0; i < quantity; i++)

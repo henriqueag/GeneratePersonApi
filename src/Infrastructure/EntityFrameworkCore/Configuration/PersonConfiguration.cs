@@ -6,6 +6,8 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
 {
     public void Configure(EntityTypeBuilder<Person> builder)
     {
+        builder.ToTable("Names");
+
         builder.HasKey(x => x.Id)
             .HasName("PK_Id_Name");
 

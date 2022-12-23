@@ -2,11 +2,14 @@
 
 namespace DocumentGeneratorApp.Presentation.RestApi.Dtos;
 
-/// <summary>
-/// Representa o objeto da requisição para condições de geração de um endereço
-/// </summary>
-public record AddressRequest 
+public record PersonParametersRequest
 {
+    [JsonPropertyName("minAge")]
+    public int? MinAge { get; set; }
+
+    [JsonPropertyName("maxAge")]
+    public int? MaxAge { get; set; }
+
     [JsonPropertyName("state")]
     public BrazilianStateAbbreviation? State { get; set; }
 

@@ -1,7 +1,6 @@
 ﻿using DocumentGeneratorApp.Domain;
 using DocumentGeneratorApp.Infrastructure.ExternalApi.Dtos;
 using Mapster;
-using System.Net.Http;
 using System.Text.Json;
 
 namespace DocumentGeneratorApp.Infrastructure.ExternalApi;
