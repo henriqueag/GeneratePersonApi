@@ -1,3 +1,5 @@
+using DocumentGeneratorApp.Presentation.RestApi.Filters;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Serviços
@@ -10,7 +12,11 @@ builder.Services.AddControllers()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddRouting();
 
-builder.Services.AddMvc().AddClasslibPart();
+builder.Services.AddMvc(opt =>
+{
+    opt.Filters.Add<UserFriendlyExceptionFilter>();
+})
+.AddClasslibPart();
 
 builder.Services.AddAuthorization();
 

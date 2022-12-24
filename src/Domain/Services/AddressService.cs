@@ -1,4 +1,5 @@
-﻿using DocumentGeneratorApp.Domain.ValueObjects;
+﻿using DocumentGeneratorApp.Domain.Exceptions;
+using DocumentGeneratorApp.Domain.ValueObjects;
 using Microsoft.Extensions.Logging;
 
 namespace DocumentGeneratorApp.Domain;
@@ -27,7 +28,7 @@ public class AddressService : IAddressService
             { TotallyRandom: true } => await GetAddressRandomAsync(cancellationToken),
             { DefinedStateAndUndefinedCity: true } => await GetAddressWithDefinedStateAndUndefinedCityAsync(randomConditions.State.Value, cancellationToken),
             { DefinedStateAndCity: true } => await GetAddressWithDefinedStateAndCityAsync(randomConditions.CityName, cancellationToken),
-            { UndefinedStateAndDefinedCity: true } => throw new InvalidOperationException("O estado não pode ser nulo quando a cidade está definida"),
+            { UndefinedStateAndDefinedCity: true } => throw new UserFriendlyException("state-not-defined", "O estado não pode ser nulo quando a cidade está definida"),
             _ => null
         };
     }
