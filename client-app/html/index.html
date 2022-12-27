@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <title>For Devs</title>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar-info">
+                <a class="logo" href="#">
+                    <img src="/images/logo.png" alt="Logo da aplicação For Devs" />
+                    <div>
+                        <h1>For Devs</h1>
+                        <p>By Henrique Aguiar</p>
+                    </div>
+                </a>
+
+                <ul>
+                    <li>
+                        <a href="#">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <section>
+            <nav class="sidebar">
+                <ul>
+                    <li class="active">
+                        <a href="#">
+                            <i class="fa-solid fa-database"></i>
+                            Gerador de CPF
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa-solid fa-database"></i>
+                            Gerador de CNPJ
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa-solid fa-database"></i>
+                            Gerador de RG
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa-solid fa-database"></i>
+                            Gerador de Pessoa
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa-solid fa-square-check"></i>
+                            Validador de CPF
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa-solid fa-square-check"></i>
+                            Validador de CPF
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa-solid fa-square-check"></i>
+                            Validador de CNPJ
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa-solid fa-hotel"></i>
+                            Buscador de endereço
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </section>
+
+        <section class="main-features-box">
+            <div class="main-features">
+                <h2>Gerador de CPF</h2>
+                <p>
+                    Utilize nosso gerador de cpf, basta clicar em "Gerar CPF" e pronto,um novo número de CPF válido será
+                    gerado.
+                </p>
+                <p>Você ainda tem opção de colocar ou não a máscara no CPF.</p>
+
+                <div class="tool-options-title">
+                    <h3>Opções da ferramenta:</h3>
+                </div>
+
+                <div class="tool-options">
+
+                    <div class="with-mask">
+                        <p>1. Gerar com máscara</p>
+                        <div class="input-box">
+                            <div>
+                                <input type="radio" name="mask" id="with-mask" checked="true" />
+                                <label for="with-mask">Sim</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="mask" id="without-mask" />
+                                <label for="without-mask">Não</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="state-option">
+                        <p>2. Estado de origem do CPF</p>
+                        <select>
+                            <option value="RS">RS</option>
+                            <option value="SP">SP</option>
+                        </select>
+                    </div>
+
+                    <button>
+                        Gerar CPF
+                        <i class="fa-solid fa-rotate"></i>
+                    </button>
+                </div>
+                <div class="tool-options-result">
+                    <label for="result">CPF Gerado</label>
+                    <input type="text" readonly />
+                </div>
+            </div>
+        </section>
+        <script src="https://kit.fontawesome.com/7217de4c92.js" crossorigin="anonymous" defer></script>
+    </body>
+</html>
