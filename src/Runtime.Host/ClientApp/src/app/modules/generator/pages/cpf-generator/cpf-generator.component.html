@@ -1,0 +1,30 @@
+<div class="row m-4">
+  <div class="col-12">
+    <h2>Gerador de CPF</h2>
+    <p>
+      Utilize nosso gerador de cpf, basta clicar em "Gerar CPF" e pronto,um novo
+      número de CPF válido será gerado.
+    </p>
+    <p>Você ainda tem opção de colocar ou não a máscara no CPF.</p>
+  </div>
+  <div class="tool-title mt-4">
+    <h3>Opções da ferramenta:</h3>
+  </div>
+
+  <dg-cpf-tool-options-form
+    [brazilianStates]="brazilianStates$ | async"
+    [isLoading]="isLoading$ | async"
+    (chosenOptions)="getChosenOptions($event)"
+  ></dg-cpf-tool-options-form>
+
+  <form class="col-5">
+    <dg-input-text
+      label="CPF Gerado"
+      [ngModel]="createdCpf$ | async"
+      [name]="'createdCpf'"
+      [placeholder]="'000.000.000-00'"
+      [readOnly]="true"
+      [showCopyToClipboard]="canShowCopyToClipboard$ | async"
+    ></dg-input-text>
+  </form>
+</div>

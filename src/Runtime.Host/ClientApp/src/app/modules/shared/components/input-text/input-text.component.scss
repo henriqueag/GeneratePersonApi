@@ -1,0 +1,47 @@
+div {
+  label,
+  input {
+    display: block;
+  }
+
+  label {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 0.5em;
+  }
+
+  .input-with-icon {
+    position: relative;
+
+    #input-text {
+      border: 1px solid #d3d3d3;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      width: 100%;
+      transition: 0.1s;
+
+      &:focus-visible {
+        outline: #24005294 solid 3px;
+      }
+    }
+
+    button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 5px;
+      position: absolute;
+      top: 5px;
+      right: 8px;
+
+      i {
+        font-size: 24px;
+      }
+    }
+
+    button:focus-visible {
+      outline: none;
+    }
+  }
+}

@@ -1,0 +1,69 @@
+$navbar-bg-color: #240052;
+$navbar-text-color: #ffffff;
+$contact-icons-color: #aeaeae;
+
+.navbar {
+  width: 100%;
+  height: 90px;
+  background-color: $navbar-bg-color;
+  display: flex;
+  padding: 0 20px;
+  box-shadow: 0px 0px 6px 2px #000000;
+  z-index: 1;
+  position: relative;
+
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+
+    img {
+      max-width: 50px;
+      width: 100%;
+    }
+
+    div {
+      padding: 0 15px;
+
+      h1 {
+        font-size: 24px;
+        font-weight: 700;
+        color: $navbar-text-color;
+      }
+
+      p {
+        position: relative;
+        top: -5px;
+        font-size: 14px;
+        font-weight: 500;
+        color: $navbar-text-color;
+      }
+    }
+  }
+
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 1;
+
+    li {
+      padding: 0 12px;
+
+      a {
+        color: $contact-icons-color;
+        padding: 5px;
+        transition: 0.2s ease-in;
+
+        i {
+          font-size: 40px;
+        }
+
+        &:hover {
+          color: #8f8f8f;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+<nav class="navbar">
+  <a class="logo" href="/">
+    <img
+      [src]="navbarItem.logoImg"
+      [alt]="navbarItem.logoAltText"
+    />
+    <div>
+      <h1>{{ navbarItem.logoTitle }}</h1>
+      <p>{{ navbarItem.logoDescription }}</p>
+    </div>
+  </a>
+
+  <ul>
+    <li *ngFor="let navItem of navbarItem.navbarItems">
+      <a
+        target="_blank"
+        [href]=navItem.link
+      >
+        <i [class]=navItem.icon ></i>
+      </a>
+    </li>
+  </ul>
+</nav>

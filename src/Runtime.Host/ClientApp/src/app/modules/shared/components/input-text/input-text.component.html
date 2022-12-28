@@ -1,0 +1,29 @@
+<div>
+  <label for="input-text">{{ label }}</label>
+  <div class="input-with-icon">
+    <input
+      #inputText
+      type="text"
+      id="input-text"
+      [style.padding-right]="showCopyToClipboard ? '50px' : '0'"
+      [minLength]="minLength"
+      [maxLength]="maxLength"
+      [disabled]="disabled"
+      [readOnly]="readOnly"
+      [required]="required"
+      [name]="name"
+      [placeholder]="placeholder"
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+      (change)="onChangeModel()"
+      (keydown)="onKeydown()"
+      [(ngModel)]="value"
+    >
+    <button *ngIf="showCopyToClipboard"
+      type="button"
+      (click)="copyToClipboard(inputText)"
+    >
+      <i class="fa-solid fa-copy" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>

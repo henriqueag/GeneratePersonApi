@@ -28,7 +28,7 @@ public class AddressController : AbstractController
     /// <param name="request">Corpo da requisição com nome do estado e cidade para preencher</param>
     /// <param name="cancellationToken">Token de cancelamento</param>
     /// <returns></returns>
-    [HttpPost("brasilian-address")]
+    [HttpPost("brazilian-address")]
     public async Task<IActionResult> GetAddressAsync([FromBody] AddressRequest request, CancellationToken cancellationToken)
     {
         _logger.LogInformation("Requisição {RequestVerb} {RequestUrl} para obter um endereço conforme as condições {@Conditions}",
@@ -46,7 +46,7 @@ public class AddressController : AbstractController
     /// <param name="abbreviationState">A sigla de qualquer estado brasileiro existente</param>
     /// <param name="cancellationToken">Token de cancelamento</param>
     /// <returns></returns>
-    [HttpGet("brasilian-cities")]
+    [HttpGet("brazilian-cities")]
     public async Task<IActionResult> GetCitiesAsync([FromQuery] BrazilianStateAbbreviation abbreviationState, CancellationToken cancellationToken)
     {
         _logger.LogInformation("Requisição {RequestVerb} {RequestUrl} para obter cidades para o estado de {BrasilianState}",
@@ -62,7 +62,7 @@ public class AddressController : AbstractController
     /// </summary>
     /// <param name="cancellationToken">Token de cancelamento</param>
     /// <returns></returns>
-    [HttpGet("brasilian-states")]
+    [HttpGet("brazilian-states")]
     public async Task<IActionResult> GetBrasilianStatesAsync(CancellationToken cancellationToken)
     {
         _logger.LogInformation("Requisição {RequestVerb} {RequestUrl} para obter os estados do Brasil",

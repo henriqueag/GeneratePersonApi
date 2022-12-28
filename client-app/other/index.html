@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="style.css" />
+        <script defer src="https://kit.fontawesome.com/7217de4c92.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="input-with-icon">
+            <input type="text" name="input-text" id="input-text" />
+            <button id="button">
+                <i class="fa-solid fa-copy" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <script type="text/javascript">
+            const input = document.querySelector('#input-text')
+            input.addEventListener('pointerenter', () => alert('Entrou'))
+            const button = document.querySelector("#button");
+            // button.addEventListener("click", selectEventToClipboard);
+
+            // document.addEventListener("keydown", selectEventToClipboard);
+
+            // // function selectEventToClipboard(ev) {
+            // //     if (ev.type == "click") {
+            // //         copyToClipboard(ev);
+            // //     } else if (ev.type == "keydown") {
+            // //         if (ev.ctrlKey && ev.key == "c") {
+            // //             copyToClipboard(ev);
+            // //         }
+            // //     }
+            // // }
+
+            // // function copyToClipboard(ev) {
+            // //     const input = document.querySelector("#input-text");
+            // //     input.select();
+            // //     input.setSelectionRange(0, 99999);
+
+            // //     navigator.clipboard.writeText(input.value);
+
+            // //     console.log(`Valor copiado: ${input.value}`);
+            // // }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+<div class="row m-4">
+  <div class="col-12">
+    <h2>Gerador de RG</h2>
+    <p>
+      Utilize nosso gerador de RG, basta clicar em "Gerar RG" e pronto,um novo
+      número de RG válido será gerado.
+    </p>
+    <p>Você ainda tem opção de colocar ou não a máscara no CPF.</p>
+  </div>
+  <div class="tool-title mt-4">
+    <h3>Opções da ferramenta:</h3>
+  </div>
+
+  <dg-rg-tool-options-form
+    [isLoading]="isLoading$ | async"
+    (chosenOptions)="getChosenOptions($event)"
+  ></dg-rg-tool-options-form>
+
+  <form class="col-5">
+    <dg-input-text
+      label="RG Gerado"
+      [ngModel]="createdRg$ | async"
+      [name]="'createdCpf'"
+      [placeholder]="'00.000.000-0'"
+      [readOnly]="true"
+      [showCopyToClipboard]="canShowCopyToClipboard$ | async"
+    ></dg-input-text>
+  </form>
+</div>

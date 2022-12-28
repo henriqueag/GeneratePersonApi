@@ -191,6 +191,7 @@ img {
   background-color: #d3d3d3;
   padding: 5px;
   border-radius: 5px;
+  display: block;
 }
 .main-features-box .main-features .tool-options button {
   max-width: 60%;
@@ -250,4 +251,11 @@ img {
 }
 .main-features-box .main-features .tool-options-result input[type=text]:focus-visible {
   outline: rgba(36, 0, 82, 0.5803921569) solid 3px;
+}
+
+.error {
+  display: block;
+  font-size: 12px;
+  color: red;
+  opacity: 0;
 }/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,61 @@
+$primary-bg: #0066ff;
+$danger-bg: #C22727;
+$success-bg: #0E7D08;
+
+button {
+  padding: 5px 20px;
+  border: none;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+  position: relative;
+
+  &.primary {
+    background-color: $primary-bg;
+  }
+
+  &.danger {
+    background-color: $danger-bg;
+  }
+
+  &.success {
+    background-color: $success-bg;
+  }
+
+  i {
+    margin-left: 10px;
+  }
+
+  &.primary:hover {
+    background-color: #0052ce;
+  }
+
+  &.danger:hover {
+    background-color: #D83A3A;
+  }
+
+  &.success:hover {
+    background-color: #11960A;
+  }
+}
+
+.loading {
+  user-select: none;
+  pointer-events: none;
+  opacity: 0.9;
+
+  i {
+    animation: loading 1.5s linear infinite;
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

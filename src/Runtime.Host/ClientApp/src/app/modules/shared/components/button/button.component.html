@@ -1,0 +1,12 @@
+<button
+  [class.primary]="className == 'primary'"
+  [class.danger]="className == 'danger'"
+  [class.success]="className == 'success'"
+  [class.loading]="loading"
+  [disabled]="disabled"
+  [type]="type"
+  (click)="buttonClick()"
+>
+  {{ label }}
+  <i [class]="icon" *ngIf="icon"></i>
+</button>

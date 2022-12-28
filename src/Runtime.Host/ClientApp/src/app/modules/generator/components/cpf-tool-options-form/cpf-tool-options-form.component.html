@@ -1,0 +1,57 @@
+<form [formGroup]="optionsForm" class="row mt-3">
+  <div class="col-4">
+    <p>1. Gerar com máscara</p>
+    <div class="row mt-2">
+      <div class="col-4">
+        <input
+          type="radio"
+          name="withMask"
+          id="with-mask"
+          [value]="true"
+          formControlName="withMask"
+        />
+        <label for="with-mask">Sim</label>
+      </div>
+      <div class="col-8">
+        <input
+          type="radio"
+          name="withMask"
+          id="without-mask"
+          [value]="false"
+          formControlName="withMask"
+        />
+        <label for="without-mask">Não</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-8">
+    <p>2. Estado de origem do CPF</p>
+    <div class="row mt-2">
+      <div class="col-4">
+        <select formControlName="state">
+          <option [ngValue]="null">{{ defaultValue }}</option>
+          <option
+            *ngFor="let state of brazilianStates"
+            [ngValue]="state.abbreviationState"
+          >
+            {{ state.abbreviationState }}
+          </option>
+        </select>
+        <div *ngIf="!isValidForm">
+          <span class="error-notification">O estado deve ser informado</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="my-4">
+    <dg-button
+      [loading]="isLoading"
+      label="Gerar CPF"
+      icon="fa-solid fa-rotate"
+      (dg-click)="onChosenOptions()"
+    >
+    </dg-button>
+  </div>
+</form>

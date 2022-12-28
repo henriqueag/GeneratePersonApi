@@ -1,0 +1,43 @@
+$menu-bg-color: #37007d;
+$menu-link-active: #737373;
+$text-color: #ffffff;
+
+.sidebar {
+  width: 260px;
+  background-color: $menu-bg-color;
+  height: 100vh;
+  overflow: auto;
+  position: fixed;
+  z-index: 1000;
+
+  ul {
+    margin-top: 10px;
+
+    .active {
+      background-color: $menu-link-active;
+      border-right: 4px solid #414141;
+    }
+
+    li {
+      padding: 8px 10px;
+      transition: 0.4s;
+
+      a {
+        text-decoration: none;
+        color: $text-color;
+        display: block;
+        font-size: 16px;
+        padding: 6px 10px;
+
+        i {
+          font-size: 22px;
+          margin-right: 8px;
+        }
+      }
+
+      &:hover {
+        background-color: $menu-link-active;
+      }
+    }
+  }
+}

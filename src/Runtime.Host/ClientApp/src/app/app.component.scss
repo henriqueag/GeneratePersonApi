@@ -1,14 +1,7 @@
-span {
-  display: block;
-}
-
-.project-name {
-  font-size: 28px;
-  font-weight: 600;
-}
-
-.devolper {
-  font-size: 16px;
-  position: relative;
-  top: -7px;
+.main-features-section {
+  padding-left: 260px;
+  position: fixed;
+  overflow: auto;
+  height: calc(100vh - 90px);
+  width: 100%;
 }
