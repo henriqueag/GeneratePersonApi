@@ -68,7 +68,7 @@ public class AddressController : AbstractController
         _logger.LogInformation("Requisição {RequestVerb} {RequestUrl} para obter os estados do Brasil",
             Request.Method, Request.Path.Value);
 
-        var result = await _repository.GetBrazilianStatesAsync(cancellationToken);
+        var result = await _service.GetBrazilianStatesAsync(cancellationToken);
         var resultSorted = result.OrderBy(x => x.Abbreviation);
 
         return Ok(resultSorted.Adapt<IEnumerable<BrazilianStateResponse>>());

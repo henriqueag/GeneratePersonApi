@@ -1,4 +1,6 @@
-﻿namespace DocumentGeneratorApp.Domain;
+﻿using System.Text;
+
+namespace DocumentGeneratorApp.Domain;
 
 public class DocumentGenerator : IDocumentGenerator
 {
@@ -13,79 +15,83 @@ public class DocumentGenerator : IDocumentGenerator
 
     public string GenerateCnpj(bool withMask = true)
     {
-        var cnpjResult = string.Empty;
-        while (!_validator.ValidateCnpj(cnpjResult))
+        var cnpjResult = new StringBuilder();
+        while (!_validator.ValidateCnpj(cnpjResult.ToString()))
         {
-            cnpjResult = string.Empty;
+            cnpjResult.Clear();
 
             for (int i = 0; i < 10; i++)
             {
-                cnpjResult += s_random.Next(0, 9);
+                cnpjResult.Append(s_random.Next(0, 9));
                 if (cnpjResult.Length == 8)
                 {
-                    cnpjResult += "0001";
+                    cnpjResult.Append("0001");
                 }
             }
         }
 
         if(withMask)
         {
-            return cnpjResult.Insert(2, ".")
+            return cnpjResult.ToString()
+                .Insert(2, ".")
                 .Insert(6, ".")
                 .Insert(10, "/")
                 .Insert(15, "-");
         }
 
-        return cnpjResult;
+        return cnpjResult.ToString();
     }
 
     public string GenerateCpf(BrazilianStateAbbreviation state, bool withMask = true)
     {
-        var cpfResult = string.Empty;
-        while (!_validator.ValidateCpf(cpfResult))
+        var cpfResult = new StringBuilder();
+        while (!_validator.ValidateCpf(cpfResult.ToString()))
         {
-            cpfResult = string.Empty;
+            cpfResult.Clear();
 
             for (int i = 0; i < 10; i++)
             {
-                cpfResult += s_random.Next(0, 9);
+                cpfResult.Append(s_random.Next(0, 9));
                 if (cpfResult.Length == 8)
                 {
-                    cpfResult += GetCpfDigitByBrasilianState(state);
+                    cpfResult.Append(GetCpfDigitByBrasilianState(state));
                 }
             }
         }
 
         if(withMask)
         {
-            return cpfResult.Insert(3, ".")
+            return cpfResult.ToString()
+                .Insert(3, ".")
                 .Insert(7, ".")
                 .Insert(11, "-");
         }
 
-        return cpfResult;
+        return cpfResult.ToString();
     }
 
     public string GenerateRg(bool withMask = true)
     {
-        string rgResult = string.Empty;
-        while (!_validator.ValidateRg(rgResult))
+        var rgResult = new StringBuilder();
+        while (!_validator.ValidateRg(rgResult.ToString()))
         {
-            rgResult = string.Empty;
+            rgResult.Clear();
+
             for (int i = 0; i < 9; i++)
             {
-                rgResult += s_random.Next(0, 9);
+                rgResult.Append(s_random.Next(0, 9));
             }
         }
         
         if (withMask)
         {
-            return rgResult.Insert(2, ".")
+            return rgResult.ToString()
+                .Insert(2, ".")
                 .Insert(6, ".")
                 .Insert(10, "-");
         }
 
-        return rgResult;
+        return rgResult.ToString();
     }
 
     private static int GetCpfDigitByBrasilianState(BrazilianStateAbbreviation state)

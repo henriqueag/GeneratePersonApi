@@ -22,7 +22,9 @@ builder.Services.AddAuthorization();
 
 builder.Services.RegisterModules(builder.Configuration);
 
-builder.Services.AddHttpClient();
+builder.Services
+    .AddMemoryCache()
+    .AddHttpClient();
 
 // Swagger
 builder.Services.AddEndpointsApiExplorer();

@@ -1,21 +1,31 @@
 ﻿using DocumentGeneratorApp.Domain.Exceptions;
 using DocumentGeneratorApp.Domain.ValueObjects;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 
 namespace DocumentGeneratorApp.Domain;
 
 public class AddressService : IAddressService
 {
+    private const string _cacheKey = "abbde358-b3b0-40d6-98f4-e9fb73debe1b";
+
     private static readonly Random s_random = new();
+    private static readonly MemoryCacheEntryOptions s_cacheOptions = new()
+    {
+        SlidingExpiration = TimeSpan.FromMinutes(10),
+        AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(24)
+    };
 
     private readonly IAddressRepository _repository;
     private readonly IAddressDetailService _addressDetail;
+    private readonly IMemoryCache _cache;
     private readonly ILogger<AddressService> _logger;
 
-    public AddressService(IAddressRepository repository, IAddressDetailService addressDetail, ILogger<AddressService> logger)
+    public AddressService(IAddressRepository repository, IAddressDetailService addressDetail, IMemoryCache cache, ILogger<AddressService> logger)
     {
         _repository = repository;
         _addressDetail = addressDetail;
+        _cache = cache;
         _logger = logger;
     }
 
@@ -31,6 +41,23 @@ public class AddressService : IAddressService
             { UndefinedStateAndDefinedCity: true } => throw new UserFriendlyException("state-not-defined", "O estado não pode ser nulo quando a cidade está definida"),
             _ => null
         };
+    }
+
+    public async Task<IReadOnlyCollection<BrazilianState>> GetBrazilianStatesAsync(CancellationToken cancellationToken)
+    {
+        if(_cache.TryGetValue<IReadOnlyCollection<BrazilianState>>(_cacheKey, out var fromCache))
+        {
+            _logger.LogDebug("A lista de estados brasileiros foi recuperada do cache");
+
+            return fromCache;
+        }
+        
+        var fromDatabase = await _repository.GetBrazilianStatesAsync(cancellationToken);
+        _cache.Set(_cacheKey, fromDatabase, s_cacheOptions);
+
+        _logger.LogDebug("A lista de estados brasileiros foi recuperada do banco de dados e adicionada no cache");
+
+        return fromDatabase;
     }
 
     private async Task<Address> GetAddressRandomAsync(CancellationToken cancellationToken)
@@ -91,5 +118,5 @@ public class AddressService : IAddressService
         var result = await _addressDetail.GetAddressByCepAsync(randomCep, cancellationToken);
         
         return result;
-    }    
+    }
 }

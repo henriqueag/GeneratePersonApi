@@ -11,4 +11,10 @@ public interface IAddressService
     /// <param name="cityName">Nome da cidade</param>
     /// <returns></returns>
     Task<Address> GetAddressAsync(RandomAddressConditions randomConditions, CancellationToken cancellationToken);
+
+    /// <summary>
+    /// Obtém uma lista com os estados brasileiros
+    /// </summary>
+    /// <returns></returns>
+    Task<IReadOnlyCollection<BrazilianState>> GetBrazilianStatesAsync(CancellationToken cancellationToken);
 }
