@@ -1,3 +1,29 @@
-<p>
-  cpf-generator works!
-</p>
+<div class="row m-4">
+  <div class="col-12">
+    <h2>Gerador de documentos de pessoas</h2>
+    <p>
+      Utilize nosso gerador de documentos de uma pessoa. Com ele geramos
+      <strong>Nome, RG, CPF, e endereço</strong>
+       (consultados nos correios) e tudo que foi gerado é válido.
+    </p>
+    <p>Basta definir as opções e clicar no botão <strong>Gerar Pessoa</strong>.</p>
+  </div>
+
+  <div class="tool-title mt-4">
+    <h3>Opções da ferramenta:</h3>
+  </div>
+
+  <div class="options-box">
+    <dg-person-tool-options-form
+      [isLoading]="isLoading$ | async"
+      [brazilianStates]="brazilianStates$ | async"
+      [brazilianCities]="brazilianCities$ | async"
+      (chosenOptions)="onGeneratePerson($event)"
+      (stateChange)="onCurrentState($event)"
+    ></dg-person-tool-options-form>
+  </div>
+
+  <div class="mb-5">
+    <dg-person-generator-result-form></dg-person-generator-result-form>
+  </div>
+</div>

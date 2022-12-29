@@ -2,8 +2,9 @@
   <div class="col-12">
     <h2>Gerador de RG</h2>
     <p>
-      Utilize nosso gerador de RG, basta clicar em "Gerar RG" e pronto,um novo
-      número de RG válido será gerado.
+      Utilize nosso gerador de <strong>RG</strong>, basta clicar em
+      <strong>Gerar RG</strong> e pronto, um novo número de RG válido será
+      gerado.
     </p>
     <p>Você ainda tem opção de colocar ou não a máscara no CPF.</p>
   </div>
@@ -11,10 +12,12 @@
     <h3>Opções da ferramenta:</h3>
   </div>
 
-  <dg-rg-tool-options-form
-    [isLoading]="isLoading$ | async"
-    (chosenOptions)="getChosenOptions($event)"
-  ></dg-rg-tool-options-form>
+  <div class="options-box">
+    <dg-rg-tool-options-form
+      [isLoading]="isLoading$ | async"
+      (chosenOptions)="getChosenOptions($event)"
+    ></dg-rg-tool-options-form>
+  </div>
 
   <form class="col-5">
     <dg-input-text

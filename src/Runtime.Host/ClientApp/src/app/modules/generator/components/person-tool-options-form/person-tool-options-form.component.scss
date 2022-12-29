@@ -1,8 +1,15 @@
-input[type="radio"] {
-  cursor: pointer;
+label,
+input {
+  display: block;
 }
 
-select {
+label {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 0.5em;
+}
+
+input[type="number"], select {
   border: 1px solid #949494;
   padding: 10px;
   font-size: 16px;
@@ -13,12 +20,4 @@ select {
     border: none;
     outline: #24005294 solid 3px;
   }
-}
-
-.error-notification {
-  color: red;
-  font-size: 12px;
-  display: block;
-  margin-top: 5px;
-  position: absolute;
 }

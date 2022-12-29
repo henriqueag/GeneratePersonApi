@@ -1,18 +1,21 @@
-import { SharedModule } from './../shared/shared.module';
-import { DocumentApi } from './api/document.api';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CpfToolOptionsFormComponent } from './components/cpf-tool-options-form/cpf-tool-options-form.component';
+import { AddressApi } from './api/address.api';
 import { CnpjGeneratorComponent } from './pages/cnpj-generator/cnpj-generator.component';
+import { CnpjToolOptionsComponent } from './components/cnpj-tool-options-form/cnpj-tool-options-form.component';
 import { CommonModule } from '@angular/common';
 import { CpfGeneratorComponent } from './pages/cpf-generator/cpf-generator.component';
+import { CpfToolOptionsFormComponent } from './components/cpf-tool-options-form/cpf-tool-options-form.component';
+import { DocumentApi } from './api/document.api';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GeneratorRoutingModule } from './generator-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { PersonGeneratorComponent } from './pages/person-generator/person-generator.component';
+import { PersonToolOptionsFormComponent } from './components/person-tool-options-form/person-tool-options-form.component';
 import { RgGeneratorComponent } from './pages/rg-generator/rg-generator.component';
-import { HttpClientModule } from '@angular/common/http';
-import { AddressApi } from './api/address.api';
-import { CnpjToolOptionsComponent } from './components/cnpj-tool-options-form/cnpj-tool-options-form.component';
 import { RgToolOptionsComponent } from './components/rg-tool-options-form/rg-tool-options-form.component';
+import { SharedModule } from './../shared/shared.module';
+import { PersonApi } from './api/person.api';
+import { PersonGeneratorResultFormComponent } from './components/person-generator-result-form/person-generator-result-form.component';
 
 @NgModule({
   imports: [
@@ -30,11 +33,14 @@ import { RgToolOptionsComponent } from './components/rg-tool-options-form/rg-too
     PersonGeneratorComponent,
     CpfToolOptionsFormComponent,
     CnpjToolOptionsComponent,
-    RgToolOptionsComponent
+    RgToolOptionsComponent,
+    PersonToolOptionsFormComponent,
+    PersonGeneratorResultFormComponent
   ],
   providers: [
     AddressApi,
-    DocumentApi
+    DocumentApi,
+    PersonApi
   ]
 })
 export class GeneratorModule { }

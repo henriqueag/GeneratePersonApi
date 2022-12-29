@@ -1,0 +1,135 @@
+<form class="row">
+  <h3>Dados Pessoais</h3>
+
+  <div class="col-4 mt-3">
+    <dg-input-text
+      label="Nome"
+      [readOnly]="true"
+      [showCopyToClipboard]="true"
+      [name]="'name'"
+      [ngModel]="personResult.name"
+    ></dg-input-text>
+  </div>
+
+  <div class="col-3 mt-3">
+    <dg-input-text
+      label="Cpf"
+      [readOnly]="true"
+      [showCopyToClipboard]="true"
+      [name]="'cpf'"
+      [ngModel]="personResult.cpf"
+    ></dg-input-text>
+  </div>
+
+  <div class="col-3 mt-3">
+    <dg-input-text
+      label="Rg"
+      [readOnly]="true"
+      [showCopyToClipboard]="true"
+      [name]="'rg'"
+      [ngModel]="personResult.rg"
+    ></dg-input-text>
+  </div>
+
+  <div class="col-2 mt-3">
+    <dg-input-text
+      label="Idade"
+      [readOnly]="true"
+      [showCopyToClipboard]="true"
+      [name]="'age'"
+      [ngModel]="personResult.age"
+    ></dg-input-text>
+  </div>
+
+  <div class="col-3 mt-3">
+    <dg-input-text
+      label="Data de Nascimento"
+      [readOnly]="true"
+      [showCopyToClipboard]="true"
+      [name]="'birthDate'"
+      [ngModel]="personResult.birthDate | date: 'dd/MM/yyyy'"
+    ></dg-input-text>
+  </div>
+
+  <div class="col-4 mt-3">
+    <dg-input-text
+      label="Telefone"
+      [readOnly]="true"
+      [showCopyToClipboard]="true"
+      [name]="'phone'"
+      [ngModel]="personResult.phone"
+    ></dg-input-text>
+  </div>
+
+  <div class="col-5 mt-3">
+    <dg-input-text
+      label="Email"
+      [readOnly]="true"
+      [showCopyToClipboard]="true"
+      [name]="'email'"
+      [ngModel]="personResult.email"
+    ></dg-input-text>
+  </div>
+
+  <h3>Endereço</h3>
+
+  <div class="col-5 mt-3">
+    <dg-input-text
+      label="Logradouro"
+      [readOnly]="true"
+      [showCopyToClipboard]="true"
+      [name]="'street'"
+      [ngModel]="personResult.address.street"
+    ></dg-input-text>
+  </div>
+
+  <div class="col-4 mt-3">
+    <dg-input-text
+      label="Bairro"
+      [readOnly]="true"
+      [showCopyToClipboard]="true"
+      [name]="'district'"
+      [ngModel]="personResult.address.district"
+    ></dg-input-text>
+  </div>
+
+  <div class="col-3 mt-3">
+    <dg-input-text
+      label="Complemento"
+      [readOnly]="true"
+      [showCopyToClipboard]="true"
+      [name]="'complement'"
+      [ngModel]="personResult.address.complement"
+    ></dg-input-text>
+  </div>
+
+  <div class="col-3 mt-3">
+    <dg-input-text
+      label="Cep"
+      [readOnly]="true"
+      [showCopyToClipboard]="true"
+      [name]="'cep'"
+      [ngModel]="personResult.address.cep"
+    ></dg-input-text>
+  </div>
+
+  <div class="col-4 mt-3">
+    <dg-input-text
+      label="Cidade"
+      [readOnly]="true"
+      [showCopyToClipboard]="true"
+      [name]="'city'"
+      [ngModel]="personResult.address.city"
+    ></dg-input-text>
+  </div>
+
+  <div class="col-5 mt-3">
+    <dg-input-text
+      label="Estado"
+      [readOnly]="true"
+      [showCopyToClipboard]="true"
+      [name]="'state'"
+      [ngModel]="personResult.address.state"
+    ></dg-input-text>
+  </div>
+</form>

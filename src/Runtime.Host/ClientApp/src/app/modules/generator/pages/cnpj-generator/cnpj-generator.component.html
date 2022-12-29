@@ -2,8 +2,9 @@
   <div class="col-12">
     <h2>Gerador de CNPJ</h2>
     <p>
-      Utilize nosso gerador de CNPJ, basta clicar em "Gerar CNPJ" e pronto,um novo
-      número de CNPJ válido será gerado.
+      Utilize nosso gerador de <strong>CNPJ</strong>, basta clicar em
+      <strong>Gerar CNPJ</strong> e pronto, um novo número de CNPJ válido será
+      gerado.
     </p>
     <p>Você ainda tem opção de colocar ou não a máscara no CPF.</p>
   </div>
@@ -11,10 +12,12 @@
     <h3>Opções da ferramenta:</h3>
   </div>
 
-  <dg-cnpj-tool-options-form
-    [isLoading]="isLoading$ | async"
-    (chosenOptions)="getChosenOptions($event)"
-  ></dg-cnpj-tool-options-form>
+  <div class="options-box">
+    <dg-cnpj-tool-options-form
+      [isLoading]="isLoading$ | async"
+      (chosenOptions)="getChosenOptions($event)"
+    ></dg-cnpj-tool-options-form>
+  </div>
 
   <form class="col-5">
     <dg-input-text

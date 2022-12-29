@@ -1,0 +1,74 @@
+<form [formGroup]="optionsForm" class="row mx-3">
+  <div class="col-4">
+    <label for="minAge">1. Idade mínima</label>
+    <input
+      type="number"
+      name="minAge"
+      id="maxAge"
+      min="18"
+      max="89"
+      value="18"
+      formControlName="minAge"
+    />
+  </div>
+  <div class="col-4">
+    <label for="manAge">2. Idade máxima</label>
+    <input
+      type="number"
+      name="maxAge"
+      id="maxAge"
+      min="18"
+      max="89"
+      value="89"
+      formControlName="maxAge"
+    />
+  </div>
+  <div class="col-4">
+    <label for="quantity">3. Gerar quantas pessoas? (Max: 10)</label>
+    <input
+      type="number"
+      name="quantity"
+      id="quantity"
+      min="1"
+      max="10"
+      value="1"
+      formControlName="quantity"
+    />
+  </div>
+  <div class="col-4 mt-4">
+    <label>4. Estado</label>
+    <select
+      formControlName="state"
+      (change)="onStateChange()"
+    >
+      <option [ngValue]="null">{{ defaultStateValue }}</option>
+      <option
+        *ngFor="let state of brazilianStates"
+        [ngValue]="state.abbreviationState"
+      >
+        {{ state.abbreviationState }}
+      </option>
+    </select>
+  </div>
+  <div class="col-8 mt-4">
+    <label>5. Cidade</label>
+    <select formControlName="cityName">
+      <option [ngValue]="null">{{ defaultCityValue }}</option>
+      <option
+        *ngFor="let city of brazilianCities?.cities"
+        [ngValue]="city"
+      >
+        {{ city }}
+      </option>
+    </select>
+  </div>
+
+  <div class="col-12 mt-4">
+    <dg-button
+      [loading]="isLoading"
+      label="Gerar pessoa"
+      icon="fa-solid fa-rotate"
+      (dg-click)="onChosenOptions()"
+    ></dg-button>
+  </div>
+</form>
